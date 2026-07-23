@@ -23,6 +23,12 @@ function escapeHtml(value: string) {
     .replaceAll('"', '&quot;')
 }
 
+/** Respeita o base do Vite (ex.: /sanavita-site/ no GitHub Pages). */
+function asset(path: string) {
+  const base = import.meta.env.BASE_URL
+  return `${base}${path.replace(/^\//, '')}`
+}
+
 function renderFeature(
   feature: (typeof features)[number],
   index: number
@@ -44,12 +50,12 @@ function renderFeature(
         <button
           type="button"
           class="media-zoom"
-          data-lightbox-src="${feature.image}"
+          data-lightbox-src="${asset(feature.image)}"
           data-lightbox-alt="${escapeHtml(feature.imageAlt)}"
           aria-label="Ampliar imagem: ${escapeHtml(feature.imageAlt)}"
         >
           <img
-            src="${feature.image}"
+            src="${asset(feature.image)}"
             alt="${escapeHtml(feature.imageAlt)}"
             loading="lazy"
             decoding="async"
@@ -128,7 +134,7 @@ export function renderPage() {
               <span></span><span></span><span></span>
             </div>
             <img
-              src="/screenshots/clinicas.png"
+              src="${asset('/screenshots/clinicas.png')}"
               alt="Painel Sanavita com lista de clínicas"
               class="device__screen"
               width="1024"
@@ -139,7 +145,7 @@ export function renderPage() {
           </div>
           <div class="hero__float" data-reveal>
             <img
-              src="/screenshots/consulta-detalhe.png"
+              src="${asset('/screenshots/consulta-detalhe.png')}"
               alt="Detalhe de consulta no Sanavita"
               width="1024"
               height="306"
@@ -268,12 +274,12 @@ export function renderPage() {
                 <button
                   type="button"
                   class="media-zoom"
-                  data-lightbox-src="${item.image}"
+                  data-lightbox-src="${asset(item.image)}"
                   data-lightbox-alt="${escapeHtml(item.imageAlt)}"
                   aria-label="Ampliar: ${escapeHtml(item.imageAlt)}"
                 >
                   <img
-                    src="${item.image}"
+                    src="${asset(item.image)}"
                     alt="${escapeHtml(item.imageAlt)}"
                     loading="lazy"
                     decoding="async"
@@ -322,7 +328,7 @@ export function renderPage() {
         <div class="showcase">
           <figure data-reveal>
             <img
-              src="/screenshots/agendar-consulta.png"
+              src="${asset('/screenshots/agendar-consulta.png')}"
               alt="Fluxo de agendamento Sanavita"
               loading="lazy"
             />
@@ -330,7 +336,7 @@ export function renderPage() {
           </figure>
           <figure data-reveal>
             <img
-              src="/screenshots/perfis-acesso.png"
+              src="${asset('/screenshots/perfis-acesso.png')}"
               alt="Perfis de acesso Sanavita"
               loading="lazy"
             />
@@ -409,12 +415,12 @@ export function renderPage() {
                 <button
                   type="button"
                   class="media-zoom"
-                  data-lightbox-src="${item.image}"
+                  data-lightbox-src="${asset(item.image)}"
                   data-lightbox-alt="${escapeHtml(item.imageAlt)}"
                   aria-label="Ampliar: ${escapeHtml(item.imageAlt)}"
                 >
                   <img
-                    src="${item.image}"
+                    src="${asset(item.image)}"
                     alt="${escapeHtml(item.imageAlt)}"
                     loading="lazy"
                     decoding="async"
