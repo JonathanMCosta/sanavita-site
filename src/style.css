@@ -1398,6 +1398,33 @@ body.lightbox-open {
     width: 100%;
   }
 
+  .nav__mobile-ctas a.btn {
+    padding: 0.75rem 1.1rem;
+  }
+
+  .nav__mobile-ctas a.btn:hover {
+    background: inherit;
+  }
+
+  .nav__mobile-ctas a.btn--ghost {
+    color: var(--brand-deep);
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  .nav__mobile-ctas a.btn--ghost:hover {
+    background: #fff;
+  }
+
+  .nav__mobile-ctas a.btn--primary {
+    color: #f7fffe;
+    background: linear-gradient(135deg, #12717c, var(--brand-deep));
+  }
+
+  .nav__mobile-ctas a.btn--primary:hover {
+    background: linear-gradient(135deg, #12717c, var(--brand-deep));
+    color: #f7fffe;
+  }
+
   .hero {
     padding-top: 1.2rem;
   }
