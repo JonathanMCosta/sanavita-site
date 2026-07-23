@@ -1,0 +1,425 @@
+import {
+  audiences,
+  benefits,
+  faqs,
+  features,
+  modules,
+  plans,
+  site,
+  stats,
+  steps,
+} from '../content'
+
+function escapeHtml(value: string) {
+  return value
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+}
+
+function renderFeature(
+  feature: (typeof features)[number],
+  index: number
+) {
+  const reverse = index % 2 === 1 ? ' feature--reverse' : ''
+  const bullets = feature.bullets
+    .map((item) => `<li>${escapeHtml(item)}</li>`)
+    .join('')
+
+  return `
+    <article class="feature${reverse}" id="${feature.id}" data-reveal>
+      <div class="feature__copy">
+        <p class="eyebrow">Módulo ${String(index + 1).padStart(2, '0')}</p>
+        <h3>${escapeHtml(feature.title)}</h3>
+        <p>${escapeHtml(feature.description)}</p>
+        <ul class="feature__bullets">${bullets}</ul>
+      </div>
+      <figure class="feature__media">
+        <button
+          type="button"
+          class="media-zoom"
+          data-lightbox-src="${feature.image}"
+          data-lightbox-alt="${escapeHtml(feature.imageAlt)}"
+          aria-label="Ampliar imagem: ${escapeHtml(feature.imageAlt)}"
+        >
+          <img
+            src="${feature.image}"
+            alt="${escapeHtml(feature.imageAlt)}"
+            loading="lazy"
+            decoding="async"
+          />
+        </button>
+      </figure>
+    </article>
+  `
+}
+
+export function renderPage() {
+  const year = new Date().getFullYear()
+
+  return `
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
+  <header class="topbar" data-topbar>
+    <div class="container topbar__inner">
+      <a class="brand" href="#inicio" aria-label="${site.name} início">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__name">${site.name}</span>
+      </a>
+
+      <nav class="nav" data-nav aria-label="Principal">
+        <a href="#produto">Produto</a>
+        <a href="#modulos">Módulos</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#planos">Planos</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <div class="topbar__actions">
+        <a class="btn btn--ghost" href="#contato">Falar com vendas</a>
+        <a class="btn btn--primary" href="#demo">Ver demonstração</a>
+        <button
+          class="menu-btn"
+          type="button"
+          data-menu-btn
+          aria-expanded="false"
+          aria-controls="menu-principal"
+          aria-label="Abrir menu"
+        >
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" id="inicio">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <p class="brand-hero">${site.name}</p>
+          <h1>O sistema que organiza a clínica do agendamento ao atendimento.</h1>
+          <p class="lead">
+            Plataforma completa para clínicas modernas: pacientes, agenda,
+            corpo clínico, consultas e financeiro — com experiência simples
+            para a recepção e controle para a gestão.
+          </p>
+          <div class="hero__cta">
+            <a class="btn btn--primary btn--lg" href="#contato">Quero apresentar na minha clínica</a>
+            <a class="btn btn--soft btn--lg" href="#produto">Explorar o produto</a>
+          </div>
+          <ul class="hero__points">
+            <li>Agenda inteligente por médico</li>
+            <li>Multi-clínica</li>
+            <li>Perfis e permissões</li>
+          </ul>
+        </div>
+
+        <div class="hero__visual" id="demo">
+          <div class="device" data-reveal>
+            <div class="device__chrome" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+            <img
+              src="/screenshots/clinicas.png"
+              alt="Painel Sanavita com lista de clínicas"
+              class="device__screen"
+              width="1280"
+              height="800"
+            />
+          </div>
+          <div class="hero__float" data-reveal>
+            <img
+              src="/screenshots/consulta-detalhe.png"
+              alt="Detalhe de consulta no Sanavita"
+              width="900"
+              height="675"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Destaques do produto">
+      <div class="container stats__grid">
+        ${stats
+          .map(
+            (item) => `
+          <article class="stat" data-reveal>
+            <strong>${escapeHtml(item.value)}</strong>
+            <span>${escapeHtml(item.label)}</span>
+          </article>
+        `
+          )
+          .join('')}
+      </div>
+    </section>
+
+    <section class="section" id="para-quem">
+      <div class="container">
+        <header class="section__header" data-reveal>
+          <p class="eyebrow">Para quem é</p>
+          <h2>Feito para quem faz a clínica acontecer.</h2>
+        </header>
+        <div class="audience">
+          ${audiences
+            .map(
+              (item) => `
+            <article class="audience-card" data-reveal>
+              <h3>${escapeHtml(item.title)}</h3>
+              <p>${escapeHtml(item.text)}</p>
+            </article>
+          `
+            )
+            .join('')}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="produto">
+      <div class="container">
+        <header class="section__header" data-reveal>
+          <p class="eyebrow">Produto em ação</p>
+          <h2>Telas reais. Fluxos pensados para o dia a dia.</h2>
+          <p>
+            Conheça os principais módulos do Sanavita com capturas do sistema
+            em uso — do cadastro de clínicas ao atendimento do paciente.
+          </p>
+        </header>
+        <div class="features">
+          ${features.map(renderFeature).join('')}
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="modulos">
+      <div class="container">
+        <header class="section__header" data-reveal>
+          <p class="eyebrow">Ecossistema</p>
+          <h2>Tudo que a clínica precisa, conectado.</h2>
+        </header>
+        <div class="modules">
+          ${modules
+            .map(
+              (item) => `
+            <article class="module-card" data-reveal>
+              <h3>${escapeHtml(item.title)}</h3>
+              <p>${escapeHtml(item.description)}</p>
+            </article>
+          `
+            )
+            .join('')}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="como-funciona">
+      <div class="container">
+        <header class="section__header" data-reveal>
+          <p class="eyebrow">Implementação</p>
+          <h2>Do zero à operação em três passos.</h2>
+        </header>
+        <ol class="steps">
+          ${steps
+            .map(
+              (item, index) => `
+            <li class="step" data-reveal>
+              <span class="step__num">${index + 1}</span>
+              <div>
+                <h3>${escapeHtml(item.title)}</h3>
+                <p>${escapeHtml(item.text)}</p>
+              </div>
+            </li>
+          `
+            )
+            .join('')}
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="beneficios">
+      <div class="container benefits">
+        <header class="section__header" data-reveal>
+          <p class="eyebrow">Por que Sanavita</p>
+          <h2>Resultado na operação, não só software bonito.</h2>
+        </header>
+        <div class="benefits__grid">
+          ${benefits
+            .map(
+              (item) => `
+            <article class="benefit-card" data-reveal>
+              <h3>${escapeHtml(item.title)}</h3>
+              <p>${escapeHtml(item.text)}</p>
+            </article>
+          `
+            )
+            .join('')}
+        </div>
+        <div class="showcase">
+          <figure data-reveal>
+            <img
+              src="/screenshots/agendar-consulta.png"
+              alt="Fluxo de agendamento Sanavita"
+              loading="lazy"
+            />
+            <figcaption>Fluxo de nova consulta — do paciente ao horário livre.</figcaption>
+          </figure>
+          <figure data-reveal>
+            <img
+              src="/screenshots/perfis-acesso.png"
+              alt="Perfis de acesso Sanavita"
+              loading="lazy"
+            />
+            <figcaption>Perfis de acesso alinhados à rotina da clínica.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="planos">
+      <div class="container">
+        <header class="section__header" data-reveal>
+          <p class="eyebrow">Comercial</p>
+          <h2>Planos sob medida para o tamanho da sua operação.</h2>
+          <p>Valores personalizados após entender volume, unidades e necessidade de suporte.</p>
+        </header>
+        <div class="plans">
+          ${plans
+            .map(
+              (plan) => `
+            <article class="plan${plan.featured ? ' plan--featured' : ''}" data-reveal>
+              ${plan.featured ? '<p class="plan__badge">Recomendado</p>' : ''}
+              <h3>${escapeHtml(plan.name)}</h3>
+              <p class="plan__price">${escapeHtml(plan.price)}</p>
+              <p class="plan__note">${escapeHtml(plan.note)}</p>
+              <ul>
+                ${plan.items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+              </ul>
+              <a class="btn ${plan.featured ? 'btn--primary' : 'btn--soft'}" href="#contato">
+                Solicitar proposta
+              </a>
+            </article>
+          `
+            )
+            .join('')}
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container faq">
+        <header class="section__header" data-reveal>
+          <p class="eyebrow">Dúvidas</p>
+          <h2>Perguntas frequentes</h2>
+        </header>
+        <div class="faq__list" data-faq>
+          ${faqs
+            .map(
+              (item, index) => `
+            <details class="faq__item" data-reveal ${index === 0 ? 'open' : ''}>
+              <summary>${escapeHtml(item.question)}</summary>
+              <p>${escapeHtml(item.answer)}</p>
+            </details>
+          `
+            )
+            .join('')}
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contato">
+      <div class="container cta__panel">
+        <div data-reveal>
+          <p class="eyebrow eyebrow--light">Próximo passo</p>
+          <h2>Leve o Sanavita para a sua clínica.</h2>
+          <p>
+            Agende uma demonstração e veja como o sistema se encaixa na sua
+            operação — recepção, médicos e gestão.
+          </p>
+          <ul class="cta__contacts">
+            <li><a href="mailto:${site.email}">${site.email}</a></li>
+            <li><a href="tel:+551140000000">${site.phone}</a></li>
+          </ul>
+        </div>
+        <form class="cta__form" data-contact-form novalidate>
+          <div class="form-grid">
+            <label>
+              Nome *
+              <input name="name" type="text" required placeholder="Seu nome" autocomplete="name" />
+              <span class="field-error" data-error-for="name"></span>
+            </label>
+            <label>
+              E-mail profissional *
+              <input name="email" type="email" required placeholder="voce@clinica.com.br" autocomplete="email" />
+              <span class="field-error" data-error-for="email"></span>
+            </label>
+            <label>
+              Clínica / cidade *
+              <input name="clinic" type="text" required placeholder="Nome da clínica e cidade" />
+              <span class="field-error" data-error-for="clinic"></span>
+            </label>
+            <label>
+              WhatsApp / telefone
+              <input name="phone" type="tel" placeholder="(11) 99999-9999" autocomplete="tel" />
+              <span class="field-error" data-error-for="phone"></span>
+            </label>
+            <label class="form-grid__full">
+              Tamanho da equipe
+              <select name="teamSize">
+                <option value="">Selecione</option>
+                <option value="1-5">1 a 5 pessoas</option>
+                <option value="6-20">6 a 20 pessoas</option>
+                <option value="21-50">21 a 50 pessoas</option>
+                <option value="50+">Mais de 50</option>
+              </select>
+            </label>
+            <label class="form-grid__full">
+              Mensagem
+              <textarea name="message" rows="3" placeholder="Conte um pouco sobre sua operação (opcional)" maxlength="800"></textarea>
+              <span class="field-error" data-error-for="message"></span>
+            </label>
+          </div>
+          <button class="btn btn--primary btn--lg" type="submit" data-submit>
+            Solicitar demonstração
+          </button>
+          <p class="form-note" data-form-note role="status" aria-live="polite" hidden></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <div class="brand brand--footer">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__name">${site.name}</span>
+        </div>
+        <p>${escapeHtml(site.tagline)}</p>
+      </div>
+      <div>
+        <p class="footer__title">Navegação</p>
+        <a href="#produto">Produto</a>
+        <a href="#planos">Planos</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contato">Contato</a>
+      </div>
+      <div>
+        <p class="footer__title">Contato</p>
+        <a href="mailto:${site.email}">${site.email}</a>
+        <a href="tel:+551140000000">${site.phone}</a>
+      </div>
+    </div>
+    <div class="container footer__copy">
+      <p>© ${year} ${site.name}. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <div class="lightbox" data-lightbox hidden>
+    <button type="button" class="lightbox__close" data-lightbox-close aria-label="Fechar imagem">×</button>
+    <img data-lightbox-image alt="" />
+  </div>
+  `
+}
