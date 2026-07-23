@@ -1,6 +1,9 @@
 import {
   audiences,
   benefits,
+  faqCategories,
+  faqClose,
+  faqIntro,
   faqs,
   features,
   howItWorksClose,
@@ -367,24 +370,97 @@ export function renderPage() {
       </div>
     </section>
 
-    <section class="section" id="faq">
+    <section class="section section--alt" id="faq">
       <div class="container faq">
-        <header class="section__header" data-reveal>
-          <p class="eyebrow">Dúvidas</p>
-          <h2>Perguntas frequentes</h2>
+        <header class="section__header section__header--wide" data-reveal>
+          <p class="eyebrow">${escapeHtml(faqIntro.eyebrow)}</p>
+          <h2>${escapeHtml(faqIntro.title)}</h2>
+          <p>${escapeHtml(faqIntro.lead)}</p>
         </header>
-        <div class="faq__list" data-faq>
-          ${faqs
+
+        <div class="faq-nav" data-faq-nav data-reveal aria-label="Categorias do FAQ">
+          <button type="button" class="faq-nav__item is-active" data-faq-filter="all">
+            Todas
+          </button>
+          ${faqCategories
             .map(
-              (item, index) => `
-            <details class="faq__item" data-reveal ${index === 0 ? 'open' : ''}>
-              <summary>${escapeHtml(item.question)}</summary>
-              <p>${escapeHtml(item.answer)}</p>
-            </details>
+              (category) => `
+            <button type="button" class="faq-nav__item" data-faq-filter="${escapeHtml(category)}">
+              ${escapeHtml(category)}
+            </button>
           `
             )
             .join('')}
         </div>
+
+        <div class="faq__list" data-faq>
+          ${faqs
+            .map((item, index) => {
+              const bullets = item.bullets
+                ?.map((b) => `<li>${escapeHtml(b)}</li>`)
+                .join('')
+              const tip = item.tip
+                ? `<p class="faq__tip">${escapeHtml(item.tip)}</p>`
+                : ''
+              const media =
+                item.image && item.imageAlt
+                  ? `
+              <figure class="faq__media">
+                <button
+                  type="button"
+                  class="media-zoom"
+                  data-lightbox-src="${item.image}"
+                  data-lightbox-alt="${escapeHtml(item.imageAlt)}"
+                  aria-label="Ampliar: ${escapeHtml(item.imageAlt)}"
+                >
+                  <img
+                    src="${item.image}"
+                    alt="${escapeHtml(item.imageAlt)}"
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="640"
+                  />
+                </button>
+                <figcaption>${escapeHtml(item.imageAlt)}</figcaption>
+              </figure>`
+                  : ''
+
+              return `
+            <details
+              class="faq__item"
+              data-reveal
+              data-faq-category="${escapeHtml(item.category)}"
+              id="faq-${escapeHtml(item.id)}"
+              ${index === 0 ? 'open' : ''}
+            >
+              <summary>
+                <span class="faq__category">${escapeHtml(item.category)}</span>
+                <span class="faq__question">${escapeHtml(item.question)}</span>
+              </summary>
+              <div class="faq__body${media ? ' faq__body--with-media' : ''}">
+                <div class="faq__copy">
+                  <p>${escapeHtml(item.answer)}</p>
+                  ${bullets ? `<ul class="feature__bullets">${bullets}</ul>` : ''}
+                  ${tip}
+                </div>
+                ${media}
+              </div>
+            </details>
+          `
+            })
+            .join('')}
+        </div>
+
+        <aside class="faq-close" data-reveal>
+          <div>
+            <h3>${escapeHtml(faqClose.title)}</h3>
+            <p>${escapeHtml(faqClose.text)}</p>
+          </div>
+          <a class="btn btn--primary btn--lg" href="#contato">
+            ${escapeHtml(faqClose.cta)}
+          </a>
+        </aside>
       </div>
     </section>
 

@@ -168,12 +168,37 @@ function setupFaq() {
   const list = qs<HTMLElement>('[data-faq]')
   if (!list) return
 
-  qsa<HTMLDetailsElement>('details', list).forEach((item) => {
+  const items = qsa<HTMLDetailsElement>('details', list)
+  items.forEach((item) => {
     on(item, 'toggle', () => {
       if (!item.open) return
-      qsa<HTMLDetailsElement>('details', list).forEach((other) => {
+      items.forEach((other) => {
         if (other !== item) other.open = false
       })
+    })
+  })
+
+  const nav = qs<HTMLElement>('[data-faq-nav]')
+  if (!nav) return
+
+  qsa<HTMLButtonElement>('[data-faq-filter]', nav).forEach((button) => {
+    on(button, 'click', () => {
+      const filter = button.dataset.faqFilter ?? 'all'
+      qsa<HTMLButtonElement>('[data-faq-filter]', nav).forEach((other) => {
+        other.classList.toggle('is-active', other === button)
+      })
+
+      items.forEach((item) => {
+        const category = item.dataset.faqCategory ?? ''
+        const match = filter === 'all' || category === filter
+        item.hidden = !match
+        if (!match) item.open = false
+      })
+
+      const firstVisible = items.find((item) => !item.hidden)
+      if (firstVisible && !items.some((item) => item.open && !item.hidden)) {
+        firstVisible.open = true
+      }
     })
   })
 }

@@ -2,6 +2,8 @@
 
 Site institucional de divulgação do sistema **Sanavita**.
 
+**Produção:** https://jonathanmcosta.github.io/sanavita-site/
+
 ## Desenvolvimento
 
 ```bash
@@ -15,6 +17,15 @@ npm run dev
 npm run build
 npm run preview
 ```
+
+## Publicação (GitHub Pages)
+
+O deploy é automático via **GitHub Actions** em todo push na branch `main`
+(`.github/workflows/deploy.yml`).
+
+1. Repo: https://github.com/JonathanMCosta/sanavita-site
+2. Em **Settings → Pages**, use Source = **GitHub Actions**
+3. Faça push em `main` — o workflow faz build e publica
 
 ## Arquitetura
 
@@ -31,6 +42,8 @@ public/
   screenshots/            # prints do produto
   robots.txt
   sitemap.xml
+.github/workflows/
+  deploy.yml              # CI/CD → GitHub Pages
 ```
 
 ## Formulário

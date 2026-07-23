@@ -21,8 +21,14 @@ export type Plan = {
 }
 
 export type FaqItem = {
+  id: string
+  category: string
   question: string
   answer: string
+  bullets?: string[]
+  tip?: string
+  image?: string
+  imageAlt?: string
 }
 
 export const site = {
@@ -312,30 +318,169 @@ export const plans: Plan[] = [
   },
 ]
 
+export const faqIntro = {
+  eyebrow: 'FAQ',
+  title: 'Dúvidas comuns, respostas claras — com print do sistema.',
+  lead:
+    'Reunimos o que gestores, recepção e médicos mais perguntam na primeira conversa. Abra cada item para ver a explicação em linguagem simples e, quando fizer sentido, a tela real do Sanavita.',
+}
+
+export const faqCategories = [
+  'Visão geral',
+  'Agenda e consultas',
+  'Equipe e acessos',
+  'Multi-clínica',
+  'Começar',
+] as const
+
 export const faqs: FaqItem[] = [
   {
-    question: 'O Sanavita substitui planilhas e sistemas separados?',
+    id: 'substitui-planilhas',
+    category: 'Visão geral',
+    question: 'O Sanavita substitui planilhas e vários sistemas?',
     answer:
-      'Sim. O objetivo é concentrar agenda, pacientes, equipe, consultas e financeiro em um único ambiente web, reduzindo retrabalho e inconsistências.',
+      'Sim. A ideia é concentrar agenda, pacientes, equipe, consultas e visão financeira em um único ambiente web — sem ficar copiando informação de um lugar para o outro.',
+    bullets: [
+      'Menos retrabalho entre recepção e gestão',
+      'Histórico do paciente no mesmo fluxo da consulta',
+      'Operação mais previsível no dia a dia',
+    ],
+    tip: 'Dica amigável: na demonstração mostramos o seu fluxo real (recepção → consulta → conclusão) para ficar fácil de comparar com o que você usa hoje.',
+    image: '/screenshots/consulta-detalhe.png',
+    imageAlt: 'Detalhe da consulta com dados do paciente e valores',
   },
   {
-    question: 'Funciona para mais de uma unidade?',
+    id: 'para-quem',
+    category: 'Visão geral',
+    question: 'Para quem o Sanavita faz mais sentido?',
     answer:
-      'Sim. O sistema é multi-clínica: a equipe troca o contexto da unidade no topo e mantém cadastros, agendas e permissões organizados.',
+      'Clínicas que querem organizar a operação sem complicar a equipe: recepção marcando com segurança, médicos com agenda clara e gestão enxergando unidades, acessos e rotina.',
+    bullets: [
+      'Clínicas com uma ou várias unidades',
+      'Equipes mistas (recepção, clínico e administração)',
+      'Quem quer sair de planilha / WhatsApp / sistemas soltos',
+    ],
+    tip: 'Se a sua dor é “agenda bagunçada” ou “ninguém sabe o status da consulta”, você está no público certo.',
   },
   {
-    question: 'Dá para controlar o que cada perfil acessa?',
-    answer:
-      'Sim. Há perfis para recepção, gestão, corpo clínico e proprietário, com vínculo por clínica e permissões alinhadas à rotina.',
-  },
-  {
+    id: 'agenda-medicos',
+    category: 'Agenda e consultas',
     question: 'Como funciona a agenda dos médicos?',
     answer:
-      'Você cadastra os dias e horários de atendimento. Na hora de agendar, o sistema mostra apenas slots livres — um horário ocupado não bloqueia o restante do dia.',
+      'Você cadastra os dias e períodos em que cada profissional atende. Na hora de marcar, o Sanavita mostra só os horários livres. Um slot ocupado não invalida o restante do dia.',
+    bullets: [
+      'Agenda por médico e especialidade',
+      'Slots padrão de 30 minutos',
+      'Menos conflito e menos “liga só para confirmar”',
+    ],
+    tip: 'Dica amigável: cadastre a rotina real (ex.: seg/qua/sex 8h–17h). O sistema faz o filtro dos horários disponíveis.',
+    image: '/screenshots/agenda.png',
+    imageAlt: 'Agenda diária com horários no Sanavita',
   },
   {
-    question: 'Posso pedir uma demonstração?',
+    id: 'agendar-consulta',
+    category: 'Agenda e consultas',
+    question: 'O agendamento é complicado para a recepção?',
     answer:
-      'Pode. Preencha o formulário de contato com os dados da clínica. O time comercial retorna para agendar uma apresentação guiada.',
+      'Não. Em um fluxo só você escolhe paciente, plano (ou particular), especialidade, médico, data e horário. O valor da consulta pode vir automaticamente da especialidade.',
+    bullets: [
+      'Só aparecem horários disponíveis',
+      'Plano de saúde ou particular na mesma tela',
+      'Valor e desconto com preenchimento simples',
+    ],
+    tip: 'A recepção ganha velocidade sem abrir mão do controle — e o médico vê a agenda organizada.',
+    image: '/screenshots/agendar-consulta.png',
+    imageAlt: 'Tela de agendar nova consulta',
+  },
+  {
+    id: 'status-consulta',
+    category: 'Agenda e consultas',
+    question: 'Consigo acompanhar o status de cada consulta?',
+    answer:
+      'Sim. Do agendamento ao atendimento, a equipe vê status claros (agendada, em andamento, concluída…) junto com paciente, médico e detalhes financeiros.',
+    bullets: [
+      'Check-in e andamento no mesmo painel',
+      'Dados do paciente à mão no atendimento',
+      'Valores e plano visíveis para a gestão',
+    ],
+    tip: 'Menos “em qual sistema está?” — tudo no mesmo lugar.',
+    image: '/screenshots/consulta-detalhe.png',
+    imageAlt: 'Painel de detalhe da consulta',
+  },
+  {
+    id: 'perfis-acesso',
+    category: 'Equipe e acessos',
+    question: 'Dá para controlar o que cada pessoa acessa?',
+    answer:
+      'Sim. Existem perfis para recepção, gestão, corpo clínico e proprietário, com vínculo por clínica. Cada pessoa entra com o que precisa — sem expor o que não precisa.',
+    bullets: [
+      'Perfis alinhados à rotina da clínica',
+      'Vínculo de usuário por unidade',
+      'Menos risco de erro por acesso indevido',
+    ],
+    tip: 'Dica amigável: comece com poucos perfis bem definidos; depois refine conforme a equipe cresce.',
+    image: '/screenshots/perfis-acesso.png',
+    imageAlt: 'Tela de perfis e acessos no Sanavita',
+  },
+  {
+    id: 'usuarios',
+    category: 'Equipe e acessos',
+    question: 'Como a gestão acompanha a equipe no sistema?',
+    answer:
+      'Há visão de usuários com status, contato e perfil. Fica claro quem está ativo, quem atende e o que cada um pode fazer — útil na implantação e no dia a dia.',
+    bullets: [
+      'Lista de usuários com filtros rápidos',
+      'Status ativo / inativo',
+      'Base pronta para expandir a equipe',
+    ],
+    image: '/screenshots/usuarios-lista.png',
+    imageAlt: 'Lista de usuários da clínica',
+  },
+  {
+    id: 'multi-clinica',
+    category: 'Multi-clínica',
+    question: 'Funciona para mais de uma unidade?',
+    answer:
+      'Sim. O Sanavita é multi-clínica: a equipe troca o contexto da unidade no topo e mantém cadastros, agendas, especialidades e permissões organizados por clínica.',
+    bullets: [
+      'Troca rápida de unidade',
+      'Especialidades e operação por clínica',
+      'Governança de acessos para redes',
+    ],
+    tip: 'Ideal para quem tem mais de um endereço ou está planejando crescer sem trocar de sistema.',
+    image: '/screenshots/clinicas.png',
+    imageAlt: 'Lista de clínicas no Sanavita',
+  },
+  {
+    id: 'implantacao',
+    category: 'Começar',
+    question: 'A implantação é demorada ou “pesada”?',
+    answer:
+      'Não precisa ser. O caminho mais leve é começar por uma unidade, cadastrar especialidades e agendas, e treinar a recepção no fluxo de marcar consulta. Em poucos dias a rotina já anda.',
+    bullets: [
+      'Comece pequeno e evolua com segurança',
+      'Telas pensadas para o dia a dia (não só para TI)',
+      'Demonstração guiada com o seu cenário',
+    ],
+    tip: 'Dica amigável: na demo, traga 1 médico e 1 turno reais — fica muito mais concreto.',
+  },
+  {
+    id: 'demonstracao',
+    category: 'Começar',
+    question: 'Posso pedir uma demonstração sem compromisso?',
+    answer:
+      'Pode — e deve. Preencha o formulário de contato com os dados da clínica. O time comercial retorna para agendar uma apresentação guiada, no seu ritmo.',
+    bullets: [
+      'Sem compromisso comercial na primeira conversa',
+      'Foco na operação da sua clínica',
+      'Respostas objetivas para gestores e equipe',
+    ],
+    tip: 'Use o formulário em Contato ou o botão abaixo — respondemos com horário sugerido.',
   },
 ]
+
+export const faqClose = {
+  title: 'Ainda ficou alguma dúvida?',
+  text: 'Conte o tamanho da clínica e o que mais dói hoje (agenda, acessos, multi-unidade…). Montamos a demonstração em cima disso.',
+  cta: 'Falar com o time Sanavita',
+}

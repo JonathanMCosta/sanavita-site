@@ -33,6 +33,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
+          # Ativa base "/sanavita-site/" no vite.config.ts
           GITHUB_ACTIONS: true
 
       - name: Upload artifact
