@@ -55,20 +55,102 @@ export const audiences = [
   },
 ]
 
-export const steps = [
+export type Step = {
+  title: string
+  subtitle: string
+  text: string
+  audience: string
+  bullets: string[]
+  tip: string
+  image: string
+  imageAlt: string
+}
+
+export const howItWorksIntro = {
+  eyebrow: 'Como funciona',
+  title: 'Simples de implantar. Fácil de usar no dia a dia.',
+  lead:
+    'Em poucos passos a clínica deixa planilhas e anotações de lado. O Sanavita acompanha o fluxo real: cadastrar, agendar, atender e acompanhar — com telas claras para recepção, médicos e gestão.',
+}
+
+export const steps: Step[] = [
   {
-    title: 'Cadastre a clínica e a equipe',
-    text: 'Unidades, especialidades, médicos e perfis de acesso em minutos.',
+    title: 'Prepare a clínica e a equipe',
+    subtitle: 'Começo organizado',
+    text: 'Cadastre a unidade, especialidades e profissionais. Defina quem é recepcionista, médico ou gestor — cada pessoa entra com o acesso certo, sem complicação.',
+    audience: 'Ideal para o gestor na implantação',
+    bullets: [
+      'Uma ou várias clínicas no mesmo sistema',
+      'Perfis prontos: recepção, clínico e administração',
+      'Especialidades e valores vinculados à operação',
+    ],
+    tip: 'Dica amigável: comece por uma unidade e um turno. Em poucos dias a equipe já opera com segurança.',
+    image: '/screenshots/clinicas.png',
+    imageAlt: 'Lista de clínicas no Sanavita',
   },
   {
-    title: 'Organize a agenda',
-    text: 'Defina dias e horários de atendimento. O sistema só oferece slots livres.',
+    title: 'Configure a agenda dos médicos',
+    subtitle: 'Horários que fazem sentido',
+    text: 'Informe os dias e períodos em que cada profissional atende. Na hora de marcar, o Sanavita mostra só os horários livres — um horário ocupado não bloqueia o restante do dia.',
+    audience: 'Pensado para recepção e corpo clínico',
+    bullets: [
+      'Agenda por médico e especialidade',
+      'Slots a cada 30 minutos',
+      'Menos conflito e menos ligação “só para confirmar”',
+    ],
+    tip: 'Dica amigável: cadastre a rotina real (ex.: seg/qua/sex 8h–17h). O sistema faz o resto.',
+    image: '/screenshots/agenda.png',
+    imageAlt: 'Agenda diária no Sanavita',
   },
   {
-    title: 'Atenda e acompanhe',
-    text: 'Do agendamento ao financeiro — status, valores e histórico no mesmo lugar.',
+    title: 'Agende a consulta em um fluxo só',
+    subtitle: 'Recepção sem fricção',
+    text: 'Escolha o paciente, o plano (ou particular), a especialidade, o médico, a data e o horário. O valor da consulta pode vir automaticamente da especialidade — tudo na mesma tela.',
+    audience: 'O dia a dia da recepção',
+    bullets: [
+      'Paciente e plano de saúde no mesmo cadastro',
+      'Só horários disponíveis aparecem',
+      'Valor e desconto com máscara monetária',
+    ],
+    tip: 'Dica amigável: em poucos cliques a consulta está marcada e a equipe segue para o próximo atendimento.',
+    image: '/screenshots/agendar-consulta.png',
+    imageAlt: 'Tela de agendar nova consulta',
+  },
+  {
+    title: 'Atenda com visão completa do paciente',
+    subtitle: 'Do check-in ao financeiro',
+    text: 'No atendimento, a equipe vê status da consulta, dados do paciente, médico responsável e detalhes financeiros. Check-in, início e conclusão ficam registrados no mesmo painel.',
+    audience: 'Atendimento e gestão lado a lado',
+    bullets: [
+      'Status claros: agendada, em andamento, concluída…',
+      'Dados do paciente e do médico na mesma tela',
+      'Valores e plano de saúde à vista',
+    ],
+    tip: 'Dica amigável: menos troca de sistema, mais tempo para cuidar do paciente.',
+    image: '/screenshots/consulta-detalhe.png',
+    imageAlt: 'Detalhe da consulta no Sanavita',
+  },
+  {
+    title: 'Gerencie acessos e acompanhe a operação',
+    subtitle: 'Controle sem burocracia',
+    text: 'Acompanhe usuários, perfis e permissões. A gestão enxerga quem está ativo, quem atende e o que cada perfil pode fazer — com segurança e clareza para crescer.',
+    audience: 'Para quem lidera a clínica',
+    bullets: [
+      'Lista de usuários com status e contato',
+      'Perfis clínicos e administrativos',
+      'Pronto para expandir para novas unidades',
+    ],
+    tip: 'Dica amigável: permissões certas evitam erro e protegem os dados da clínica.',
+    image: '/screenshots/usuarios-lista.png',
+    imageAlt: 'Lista de usuários no Sanavita',
   },
 ]
+
+export const howItWorksClose = {
+  title: 'Pronto para ver na prática?',
+  text: 'Agende uma demonstração e percorra esse fluxo com a realidade da sua clínica — sem compromisso e com linguagem simples para toda a equipe.',
+  cta: 'Quero uma demonstração guiada',
+}
 
 export const features: Feature[] = [
   {

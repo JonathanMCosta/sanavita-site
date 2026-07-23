@@ -3,6 +3,8 @@ import {
   benefits,
   faqs,
   features,
+  howItWorksClose,
+  howItWorksIntro,
   modules,
   plans,
   site,
@@ -126,16 +128,19 @@ export function renderPage() {
               src="/screenshots/clinicas.png"
               alt="Painel Sanavita com lista de clínicas"
               class="device__screen"
-              width="1280"
-              height="800"
+              width="1024"
+              height="505"
+              decoding="async"
+              fetchpriority="high"
             />
           </div>
           <div class="hero__float" data-reveal>
             <img
               src="/screenshots/consulta-detalhe.png"
               alt="Detalhe de consulta no Sanavita"
-              width="900"
-              height="675"
+              width="1024"
+              height="306"
+              decoding="async"
             />
           </div>
         </div>
@@ -217,25 +222,79 @@ export function renderPage() {
 
     <section class="section section--alt" id="como-funciona">
       <div class="container">
-        <header class="section__header" data-reveal>
-          <p class="eyebrow">Implementação</p>
-          <h2>Do zero à operação em três passos.</h2>
+        <header class="section__header section__header--wide" data-reveal>
+          <p class="eyebrow">${escapeHtml(howItWorksIntro.eyebrow)}</p>
+          <h2>${escapeHtml(howItWorksIntro.title)}</h2>
+          <p>${escapeHtml(howItWorksIntro.lead)}</p>
         </header>
-        <ol class="steps">
+
+        <div class="journey-nav" data-reveal aria-label="Etapas do fluxo">
           ${steps
             .map(
               (item, index) => `
-            <li class="step" data-reveal>
-              <span class="step__num">${index + 1}</span>
-              <div>
-                <h3>${escapeHtml(item.title)}</h3>
-                <p>${escapeHtml(item.text)}</p>
-              </div>
-            </li>
+            <a class="journey-nav__item" href="#passo-${index + 1}">
+              <span>${index + 1}</span>
+              ${escapeHtml(item.subtitle)}
+            </a>
           `
             )
             .join('')}
+        </div>
+
+        <ol class="journey">
+          ${steps
+            .map((item, index) => {
+              const reverse = index % 2 === 1 ? ' journey-step--reverse' : ''
+              const bullets = item.bullets
+                .map((b) => `<li>${escapeHtml(b)}</li>`)
+                .join('')
+              return `
+            <li class="journey-step${reverse}" id="passo-${index + 1}" data-reveal>
+              <div class="journey-step__copy">
+                <div class="journey-step__meta">
+                  <span class="step__num">${index + 1}</span>
+                  <span class="journey-step__audience">${escapeHtml(item.audience)}</span>
+                </div>
+                <p class="journey-step__kicker">${escapeHtml(item.subtitle)}</p>
+                <h3>${escapeHtml(item.title)}</h3>
+                <p>${escapeHtml(item.text)}</p>
+                <ul class="feature__bullets">${bullets}</ul>
+                <p class="journey-step__tip">${escapeHtml(item.tip)}</p>
+              </div>
+              <figure class="journey-step__media">
+                <button
+                  type="button"
+                  class="media-zoom"
+                  data-lightbox-src="${item.image}"
+                  data-lightbox-alt="${escapeHtml(item.imageAlt)}"
+                  aria-label="Ampliar: ${escapeHtml(item.imageAlt)}"
+                >
+                  <img
+                    src="${item.image}"
+                    alt="${escapeHtml(item.imageAlt)}"
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="640"
+                  />
+                </button>
+                <figcaption>${escapeHtml(item.imageAlt)}</figcaption>
+              </figure>
+            </li>
+          `
+            })
+            .join('')}
         </ol>
+
+        <aside class="journey-close" data-reveal>
+          <div>
+            <h3>${escapeHtml(howItWorksClose.title)}</h3>
+            <p>${escapeHtml(howItWorksClose.text)}</p>
+          </div>
+          <a class="btn btn--primary btn--lg" href="#contato">
+            ${escapeHtml(howItWorksClose.cta)}
+          </a>
+        </aside>
       </div>
     </section>
 
