@@ -86,11 +86,15 @@ export function renderPage() {
         <a href="#planos">Planos</a>
         <a href="#faq">FAQ</a>
         <a href="#contato">Contato</a>
+        <div class="nav__mobile-ctas">
+          <a class="btn btn--ghost" href="#contato">Falar com vendas</a>
+          <a class="btn btn--primary" href="#demo">Ver demonstração</a>
+        </div>
       </nav>
 
       <div class="topbar__actions">
-        <a class="btn btn--ghost" href="#contato">Falar com vendas</a>
-        <a class="btn btn--primary" href="#demo">Ver demonstração</a>
+        <a class="btn btn--ghost topbar__cta" href="#contato">Falar com vendas</a>
+        <a class="btn btn--primary topbar__cta" href="#demo">Ver demonstração</a>
         <button
           class="menu-btn"
           type="button"
