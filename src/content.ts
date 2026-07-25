@@ -41,8 +41,8 @@ export const site = {
 
 export const stats = [
   { value: '1 sistema', label: 'para toda a operação' },
+  { value: 'BI integrado', label: 'indicadores e relatórios' },
   { value: 'Multi-clínica', label: 'unidades no mesmo login' },
-  { value: '30 min', label: 'slots de agenda padrão' },
   { value: 'Perfis', label: 'recepção, médico e gestão' },
 ]
 
@@ -57,7 +57,7 @@ export const audiences = [
   },
   {
     title: 'Gestão',
-    text: 'Clínicas, usuários, permissões e financeiro centralizados para decidir com dados reais.',
+    text: 'Clínicas, usuários, permissões, financeiro e BI no mesmo lugar — indicadores reais para decidir com segurança.',
   },
 ]
 
@@ -76,7 +76,7 @@ export const howItWorksIntro = {
   eyebrow: 'Como funciona',
   title: 'Simples de implantar. Fácil de usar no dia a dia.',
   lead:
-    'Em poucos passos a clínica deixa planilhas e anotações de lado. O Sanavita acompanha o fluxo real: cadastrar, agendar, atender e acompanhar — com telas claras para recepção, médicos e gestão.',
+    'Em poucos passos a clínica deixa planilhas e anotações de lado. O Sanavita acompanha o fluxo real: cadastrar, agendar, atender e acompanhar resultados no BI — com telas claras para recepção, médicos e gestão.',
 }
 
 export const steps: Step[] = [
@@ -149,6 +149,20 @@ export const steps: Step[] = [
     tip: 'Dica amigável: permissões certas evitam erro e protegem os dados da clínica.',
     image: '/screenshots/usuarios-lista.png',
     imageAlt: 'Lista de usuários no Sanavita',
+  },
+  {
+    title: 'Acompanhe resultados com BI integrado',
+    subtitle: 'Dados que orientam a gestão',
+    text: 'Sem planilha paralela: o Sanavita traz Business Intelligence dentro do próprio sistema. Veja ocupação, produtividade, fluxo de caixa e despesas por categoria — e exporte quando precisar apresentar o mês.',
+    audience: 'Para gestores e donos de clínica',
+    bullets: [
+      'Painéis operacional e financeiro na mesma tela',
+      'Indicadores de agenda, receita e contas',
+      'Exportação de relatórios para Excel e PDF',
+    ],
+    tip: 'Dica amigável: use o BI na reunião semanal — a conversa muda quando o número aparece na hora.',
+    image: '/screenshots/bi-dashboard.png',
+    imageAlt: 'Painel de BI do Sanavita com indicadores e gráficos',
   },
 ]
 
@@ -237,6 +251,19 @@ export const features: Feature[] = [
     image: '/screenshots/perfis-acesso.png',
     imageAlt: 'Configuração de perfis de acesso',
   },
+  {
+    id: 'bi',
+    title: 'BI integrado para decidir com dados',
+    description:
+      'Business Intelligence nativo: indicadores de operação e financeiro no mesmo sistema da agenda — sem ferramenta à parte nem planilha solta.',
+    bullets: [
+      'KPIs de receita, despesas e lucro',
+      'Fluxo de caixa e despesas por categoria',
+      'Relatórios exportáveis (Excel e PDF)',
+    ],
+    image: '/screenshots/bi-dashboard.png',
+    imageAlt: 'Dashboard de BI do Sanavita com fluxo de caixa e categorias',
+  },
 ]
 
 export const modules: ModuleItem[] = [
@@ -258,11 +285,12 @@ export const modules: ModuleItem[] = [
   },
   {
     title: 'Financeiro',
-    description: 'Valores de consulta, descontos e contas a receber.',
+    description: 'Contas a pagar/receber, despesas, repasses e fluxo de caixa.',
   },
   {
-    title: 'Gestão',
-    description: 'Clínicas, usuários, especialidades e configurações.',
+    title: 'BI e relatórios',
+    description:
+      'Indicadores operacionais e financeiros, gráficos e exportação de relatórios.',
   },
 ]
 
@@ -273,11 +301,11 @@ export const benefits = [
   },
   {
     title: 'Operação unificada',
-    text: 'Pacientes, consultas, equipe e finanças no mesmo ambiente, sem planilhas paralelas.',
+    text: 'Pacientes, consultas, equipe, finanças e BI no mesmo ambiente, sem planilhas paralelas.',
   },
   {
-    title: 'Pronto para crescer',
-    text: 'Multi-unidade e perfis de acesso acompanham a expansão da sua rede de clínicas.',
+    title: 'Gestão com indicadores',
+    text: 'BI integrado mostra ocupação, produtividade e saúde financeira — para decidir com dados, não com feeling.',
   },
 ]
 
@@ -301,7 +329,7 @@ export const plans: Plan[] = [
     items: [
       'Multi-clínica',
       'Corpo clínico e agenda',
-      'Financeiro básico',
+      'Financeiro + BI integrado',
       'Onboarding assistido',
     ],
   },
@@ -311,9 +339,9 @@ export const plans: Plan[] = [
     note: 'Grupos e expansão',
     items: [
       'Várias unidades',
+      'BI e relatórios avançados',
       'Governança de acessos',
       'Prioridade de suporte',
-      'Roadmap sob demanda',
     ],
   },
 ]
@@ -330,6 +358,7 @@ export const faqCategories = [
   'Agenda e consultas',
   'Equipe e acessos',
   'Multi-clínica',
+  'BI e financeiro',
   'Começar',
 ] as const
 
@@ -339,11 +368,11 @@ export const faqs: FaqItem[] = [
     category: 'Visão geral',
     question: 'O Sanavita substitui planilhas e vários sistemas?',
     answer:
-      'Sim. A ideia é concentrar agenda, pacientes, equipe, consultas e visão financeira em um único ambiente web — sem ficar copiando informação de um lugar para o outro.',
+      'Sim. A ideia é concentrar agenda, pacientes, equipe, consultas, financeiro e BI em um único ambiente web — sem ficar copiando informação de um lugar para o outro.',
     bullets: [
       'Menos retrabalho entre recepção e gestão',
       'Histórico do paciente no mesmo fluxo da consulta',
-      'Operação mais previsível no dia a dia',
+      'Indicadores e relatórios sem planilha paralela',
     ],
     tip: 'Dica amigável: na demonstração mostramos o seu fluxo real (recepção → consulta → conclusão) para ficar fácil de comparar com o que você usa hoje.',
     image: '/screenshots/consulta-detalhe.png',
@@ -450,6 +479,21 @@ export const faqs: FaqItem[] = [
     tip: 'Ideal para quem tem mais de um endereço ou está planejando crescer sem trocar de sistema.',
     image: '/screenshots/clinicas.png',
     imageAlt: 'Lista de clínicas no Sanavita',
+  },
+  {
+    id: 'bi-integrado',
+    category: 'BI e financeiro',
+    question: 'O Sanavita tem BI / relatórios de gestão?',
+    answer:
+      'Sim — e já vem integrado ao sistema. Você acompanha indicadores operacionais e financeiros (receita, despesas, fluxo de caixa, categorias, ocupação) sem contratar outra ferramenta de analytics.',
+    bullets: [
+      'Painéis com KPIs e gráficos no próprio Sanavita',
+      'Visão financeira alinhada a contas a pagar/receber',
+      'Exportação de relatórios para Excel e PDF',
+    ],
+    tip: 'Dica amigável: na demonstração abrimos o BI com o período da sua clínica — fica fácil ver o valor na prática.',
+    image: '/screenshots/bi-dashboard.png',
+    imageAlt: 'Tela de Business Intelligence do Sanavita',
   },
   {
     id: 'implantacao',

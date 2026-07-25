@@ -115,11 +115,11 @@ export function renderPage() {
       <div class="container hero__grid">
         <div class="hero__copy">
           <p class="brand-hero">${site.name}</p>
-          <h1>O sistema que organiza a clínica do agendamento ao atendimento.</h1>
+          <h1>O sistema que organiza a clínica do agendamento aos indicadores.</h1>
           <p class="lead">
             Plataforma completa para clínicas modernas: pacientes, agenda,
-            corpo clínico, consultas e financeiro — com experiência simples
-            para a recepção e controle para a gestão.
+            corpo clínico, financeiro e BI integrado — com experiência simples
+            para a recepção e visão clara para a gestão.
           </p>
           <div class="hero__cta">
             <a class="btn btn--primary btn--lg" href="#contato">Quero apresentar na minha clínica</a>
@@ -127,8 +127,8 @@ export function renderPage() {
           </div>
           <ul class="hero__points">
             <li>Agenda inteligente por médico</li>
+            <li>BI e relatórios integrados</li>
             <li>Multi-clínica</li>
-            <li>Perfis e permissões</li>
           </ul>
         </div>
 
@@ -138,11 +138,11 @@ export function renderPage() {
               <span></span><span></span><span></span>
             </div>
             <img
-              src="${asset('/screenshots/clinicas.png')}"
-              alt="Painel Sanavita com lista de clínicas"
+              src="${asset('/screenshots/bi-dashboard.png')}"
+              alt="Painel de BI do Sanavita com indicadores e gráficos"
               class="device__screen"
               width="1024"
-              height="505"
+              height="576"
               decoding="async"
               fetchpriority="high"
             />
@@ -203,7 +203,7 @@ export function renderPage() {
           <h2>Telas reais. Fluxos pensados para o dia a dia.</h2>
           <p>
             Conheça os principais módulos do Sanavita com capturas do sistema
-            em uso — do cadastro de clínicas ao atendimento do paciente.
+            em uso — da agenda ao atendimento, com BI integrado para a gestão.
           </p>
         </header>
         <div class="features">
@@ -340,11 +340,11 @@ export function renderPage() {
           </figure>
           <figure data-reveal>
             <img
-              src="${asset('/screenshots/perfis-acesso.png')}"
-              alt="Perfis de acesso Sanavita"
+              src="${asset('/screenshots/bi-dashboard.png')}"
+              alt="BI integrado Sanavita"
               loading="lazy"
             />
-            <figcaption>Perfis de acesso alinhados à rotina da clínica.</figcaption>
+            <figcaption>BI integrado — indicadores e relatórios no mesmo sistema.</figcaption>
           </figure>
         </div>
       </div>
