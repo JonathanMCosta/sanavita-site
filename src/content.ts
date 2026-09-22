@@ -247,7 +247,7 @@ export const features: Feature[] = [
     description:
       'Perfis clínicos e administrativos prontos para a realidade da clínica, com vínculo por unidade.',
     bullets: [
-      'Administrador, gerente, recepção',
+      'Proprietário, administrativo e recepção',
       'Perfis clínicos por especialidade',
       'Vínculo a uma ou mais clínicas',
     ],
@@ -267,37 +267,73 @@ export const features: Feature[] = [
     image: '/screenshots/bi-dashboard.png',
     imageAlt: 'Dashboard de BI do Sanavita com fluxo de caixa e categorias',
   },
+  {
+    id: 'financeiro',
+    title: 'Financeiro e faturamento no mesmo lugar',
+    description:
+      'Contas a pagar e receber no dia a dia; no plano Pro, guias TISS, lotes, glosas e repasses médicos — sem planilha paralela.',
+    bullets: [
+      'Contas a pagar e receber com categorias',
+      'Faturamento TISS com exportação XML',
+      'Repasses e visão para a gestão',
+    ],
+    image: '/screenshots/bi-dashboard.png',
+    imageAlt: 'Indicadores financeiros no Sanavita',
+  },
+  {
+    id: 'portal',
+    title: 'Portal do paciente',
+    description:
+      'O paciente agenda, consulta documentos e acompanha o financeiro em área própria — com solicitação de acesso gerenciada pela clínica.',
+    bullets: [
+      'Login e agenda pelo portal',
+      'Receitas, atestados, exames e prontuários',
+      'Solicitações de acesso aprovadas pela equipe',
+    ],
+    image: '/screenshots/consulta-detalhe.png',
+    imageAlt: 'Fluxo de consulta e dados do paciente no Sanavita',
+  },
 ]
 
 export const modules: ModuleItem[] = [
   {
     title: 'Pacientes e Core',
-    description: 'Cadastro, unidades, usuários e configurações da clínica.',
+    description: 'Cadastro, unidades, usuários, perfis e configurações da clínica.',
     fromPlan: 'Starter',
   },
   {
     title: 'Agenda e consultas',
-    description: 'Do agendamento ao check-in, atendimento e lembretes.',
+    description: 'Horários livres, agendamento, check-in, atendimento e lista de espera.',
     fromPlan: 'Starter',
   },
   {
     title: 'Clínico / PEP',
-    description: 'Prontuário, receitas, atestados, exames e corpo clínico.',
+    description: 'Prontuário, receitas, atestados, exames, laudos e corpo clínico.',
     fromPlan: 'Starter',
   },
   {
     title: 'Financeiro básico',
-    description: 'Contas a pagar/receber e categorias financeiras.',
+    description: 'Contas a pagar/receber, categorias e visão financeira do dia a dia.',
     fromPlan: 'Starter',
   },
   {
-    title: 'Financeiro completo e TISS',
-    description: 'Faturamento, glosas, repasses e importação TISS.',
+    title: 'Faturamento TISS',
+    description: 'Guias, lotes, glosas e exportação/importação de XML TISS.',
     fromPlan: 'Pro',
   },
   {
-    title: 'Fila, portal e BI',
-    description: 'Fila/senhas, portal do paciente, estoque, BI e LGPD.',
+    title: 'Portal do paciente',
+    description: 'App do paciente: agendar, consultas, documentos e financeiro.',
+    fromPlan: 'Pro',
+  },
+  {
+    title: 'Estoque e compras',
+    description: 'Medicamentos, inventário, compras e fornecedores.',
+    fromPlan: 'Pro',
+  },
+  {
+    title: 'BI e LGPD',
+    description: 'Indicadores com exportação Excel/PDF e ferramentas de privacidade.',
     fromPlan: 'Pro',
   },
 ]
@@ -324,11 +360,11 @@ export const plans: Plan[] = [
     price: 'A partir de R$ 299/mês*',
     note: 'Consultório ou clínica com 1 unidade',
     items: [
-      'Core: clínicas, usuários, pacientes e configurações',
-      'Agenda, lembretes e operação clínica (PEP, receitas, exames)',
-      'Financeiro básico (pagar / receber)',
-      'Até 1 unidade e 5 usuários',
-      'Trial de 14 dias · suporte por e-mail',
+      'Clínicas, usuários, pacientes e configurações',
+      'Agenda (slots de 30 min), lembretes e lista de espera',
+      'PEP: prontuário, receitas, atestados e exames',
+      'Financeiro básico (contas a pagar e receber)',
+      'Até 1 unidade e 5 usuários · trial de 14 dias',
     ],
   },
   {
@@ -339,10 +375,10 @@ export const plans: Plan[] = [
     featured: true,
     items: [
       'Tudo do Starter',
-      'Fila/senhas, faturamento TISS, portal do paciente',
-      'Suprimentos, BI operacional e LGPD',
-      'Até 3 unidades e 25 usuários',
-      'Pagamentos online · implantação assistida',
+      'Portal do paciente (agendar, documentos e financeiro)',
+      'Faturamento TISS (guias, lotes e glosas) + repasses',
+      'Estoque/compras, BI com Excel/PDF e módulo LGPD',
+      'Até 3 unidades e 25 usuários · implantação assistida',
     ],
   },
   {
@@ -351,11 +387,11 @@ export const plans: Plan[] = [
     price: 'Sob proposta',
     note: 'Redes, franquias e operação avançada',
     items: [
-      'Tudo do Pro + régua de cobrança (dunning)',
-      'Unidades e usuários sob contrato',
-      'Overrides, integrações e white-label sob demanda',
-      'SLA dedicado e CSM',
-      'Projeto customizado de migração',
+      'Tudo do Pro, com limites sob contrato',
+      'Unidades e usuários conforme a operação da rede',
+      'Governança de acessos e suporte com SLA',
+      'Integrações e customizações sob demanda',
+      'Projeto de migração e CSM dedicado',
     ],
   },
 ]
@@ -518,24 +554,24 @@ export const faqs: FaqItem[] = [
     category: 'Planos',
     question: 'Qual a diferença entre Starter, Pro e Enterprise?',
     answer:
-      'Starter cobre a operação essencial (agenda, pacientes, PEP e financeiro básico) em 1 unidade. Pro adiciona fila, TISS, portal do paciente, estoque, BI e LGPD — até 3 unidades. Enterprise é sob contrato, com limites customizados, régua de cobrança e suporte dedicado.',
+      'Starter cobre a operação essencial em 1 unidade: agenda, pacientes, PEP (prontuário, receitas, exames) e financeiro básico. Pro inclui portal do paciente, faturamento TISS, estoque, BI com exportação e LGPD — até 3 unidades. Enterprise mantém o Pro com limites, suporte e integrações sob contrato.',
     bullets: [
       'Starter — consultório / clínica enxuta',
-      'Pro — clínica multidisciplinar em crescimento (recomendado)',
-      'Enterprise — redes e franquias',
+      'Pro — clínica em crescimento (recomendado)',
+      'Enterprise — redes e franquias sob proposta',
     ],
-    tip: 'Não sabe qual escolher? Peça uma proposta indicando o número de unidades e usuários — sugerimos o plano certo.',
+    tip: 'Não sabe qual escolher? Peça uma proposta com número de unidades e usuários — sugerimos o plano certo.',
   },
   {
     id: 'trial',
     category: 'Planos',
     question: 'Tem período de teste?',
     answer:
-      'Sim. Novos tenants começam com trial do Starter (14 dias) para validar o fluxo com a equipe. Depois, você ativa o plano contratado ou faz upgrade para o Pro/Enterprise.',
+      'Sim. Novos cadastros de proprietário começam com trial do Starter (14 dias) para a equipe validar o fluxo. Depois você ativa o plano contratado ou faz upgrade para Pro/Enterprise.',
     bullets: [
       '14 dias para conhecer a operação',
       'Upgrade sem perder cadastros',
-      'Sem compromisso na demonstração comercial',
+      'Demonstração comercial sem compromisso',
     ],
   },
   {
@@ -543,11 +579,35 @@ export const faqs: FaqItem[] = [
     category: 'Planos',
     question: 'Consigo liberar só alguns módulos depois?',
     answer:
-      'Sim. O acesso é por pacotes (módulos) no plano do grupo. Se a clínica crescer, fazemos upgrade de plano ou incluímos add-ons (ex.: pagamentos online, régua de cobrança) sem trocar de sistema.',
+      'Sim. O acesso segue o plano do grupo (Starter, Pro ou Enterprise): o que está no plano aparece no menu para quem tiver permissão de perfil. Ao crescer, fazemos upgrade de plano — sem trocar de sistema.',
     bullets: [
-      'Módulos alinhados ao que aparece no menu',
+      'Menus liberados conforme o plano contratado',
       'Limites de unidades e usuários por plano',
-      'Add-ons quando fizer sentido comercial',
+      'Perfis da equipe continuam controlando quem vê o quê',
+    ],
+  },
+  {
+    id: 'tiss',
+    category: 'BI e financeiro',
+    question: 'O Sanavita faz faturamento TISS?',
+    answer:
+      'Sim, no plano Pro (e Enterprise). A clínica monta guias e lotes, registra glosas e exporta XML TISS 3.05; também pode importar retorno quando o módulo estiver habilitado. Não substitui a relação contratual com cada convênio — organiza o fluxo de faturamento.',
+    bullets: [
+      'Guias, lotes e glosas no sistema',
+      'Exportação de lote em XML TISS',
+      'Financeiro do dia a dia já no Starter',
+    ],
+  },
+  {
+    id: 'portal-paciente',
+    category: 'Visão geral',
+    question: 'Existe portal para o paciente?',
+    answer:
+      'Sim, no plano Pro. O paciente acessa uma área própria para agendar, ver consultas e documentos (receitas, atestados, exames) e acompanhar o financeiro. A clínica aprova solicitações de acesso.',
+    bullets: [
+      'Portal separado do login da equipe',
+      'Agendamento e documentos pelo paciente',
+      'Controle de acesso pela clínica',
     ],
   },
   {

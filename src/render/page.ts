@@ -118,18 +118,18 @@ export function renderPage() {
           <p class="brand-hero">${site.name}</p>
           <h1>O sistema que organiza a clínica do agendamento aos indicadores.</h1>
           <p class="lead">
-            Plataforma completa para clínicas modernas: pacientes, agenda,
-            corpo clínico, financeiro e BI integrado — com experiência simples
-            para a recepção e visão clara para a gestão.
+            Plataforma para clínicas: pacientes, agenda, prontuário, financeiro,
+            portal do paciente e BI integrado — simples para a recepção e clara
+            para a gestão.
           </p>
           <div class="hero__cta">
             <a class="btn btn--primary btn--lg" href="#contato">Quero apresentar na minha clínica</a>
             <a class="btn btn--soft btn--lg" href="#produto">Explorar o produto</a>
           </div>
           <ul class="hero__points">
-            <li>Agenda inteligente por médico</li>
-            <li>BI e relatórios integrados</li>
-            <li>Multi-clínica</li>
+            <li>Agenda com slots de 30 minutos</li>
+            <li>PEP, financeiro e BI com Excel/PDF</li>
+            <li>Multi-clínica e portal do paciente</li>
           </ul>
         </div>
 
