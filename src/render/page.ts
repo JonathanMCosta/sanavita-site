@@ -10,6 +10,7 @@ import {
   howItWorksIntro,
   modules,
   plans,
+  plansDisclaimer,
   site,
   stats,
   steps,
@@ -223,6 +224,11 @@ export function renderPage() {
             .map(
               (item) => `
             <article class="module-card" data-reveal>
+              ${
+                item.fromPlan
+                  ? `<p class="module-card__plan">A partir do ${escapeHtml(item.fromPlan)}</p>`
+                  : ''
+              }
               <h3>${escapeHtml(item.title)}</h3>
               <p>${escapeHtml(item.description)}</p>
             </article>
@@ -354,8 +360,12 @@ export function renderPage() {
       <div class="container">
         <header class="section__header" data-reveal>
           <p class="eyebrow">Comercial</p>
-          <h2>Planos sob medida para o tamanho da sua operação.</h2>
-          <p>Valores personalizados após entender volume, unidades e necessidade de suporte.</p>
+          <h2>Planos com módulos certos para cada momento da clínica.</h2>
+          <p>
+            Starter, Pro e Enterprise — acesso liberado por pacotes, alinhado ao
+            que a equipe vê no sistema. Valores sob proposta após entender volume
+            e suporte.
+          </p>
         </header>
         <div class="plans">
           ${plans
@@ -369,7 +379,11 @@ export function renderPage() {
               <ul>
                 ${plan.items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
               </ul>
-              <a class="btn ${plan.featured ? 'btn--primary' : 'btn--soft'}" href="#contato">
+              <a
+                class="btn ${plan.featured ? 'btn--primary' : 'btn--soft'}"
+                href="#contato"
+                data-plan-interest="${escapeHtml(plan.id)}"
+              >
                 Solicitar proposta
               </a>
             </article>
@@ -377,6 +391,7 @@ export function renderPage() {
             )
             .join('')}
         </div>
+        <p class="plans__disclaimer" data-reveal>${escapeHtml(plansDisclaimer)}</p>
       </div>
     </section>
 
@@ -510,7 +525,16 @@ export function renderPage() {
               <input name="phone" type="tel" placeholder="(11) 99999-9999" autocomplete="tel" />
               <span class="field-error" data-error-for="phone"></span>
             </label>
-            <label class="form-grid__full">
+            <label>
+              Plano de interesse
+              <select name="planInterest" data-plan-select>
+                <option value="">Ainda não sei</option>
+                <option value="starter">Starter</option>
+                <option value="pro">Pro</option>
+                <option value="enterprise">Enterprise</option>
+              </select>
+            </label>
+            <label>
               Tamanho da equipe
               <select name="teamSize">
                 <option value="">Selecione</option>

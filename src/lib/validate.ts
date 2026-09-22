@@ -3,6 +3,7 @@ export type ContactPayload = {
   email: string
   clinic: string
   phone: string
+  planInterest: string
   teamSize: string
   message: string
 }
@@ -10,6 +11,7 @@ export type ContactPayload = {
 export type FieldErrors = Partial<Record<keyof ContactPayload, string>>
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const PLAN_IDS = new Set(['starter', 'pro', 'enterprise'])
 
 export function readContactForm(form: HTMLFormElement): ContactPayload {
   const data = new FormData(form)
@@ -21,6 +23,7 @@ export function readContactForm(form: HTMLFormElement): ContactPayload {
     email: get('email'),
     clinic: get('clinic'),
     phone: get('phone'),
+    planInterest: get('planInterest'),
     teamSize: get('teamSize'),
     message: get('message'),
   }
@@ -43,6 +46,10 @@ export function validateContact(payload: ContactPayload): FieldErrors {
 
   if (payload.phone && payload.phone.replace(/\D/g, '').length < 10) {
     errors.phone = 'Telefone inválido. Use DDD + número.'
+  }
+
+  if (payload.planInterest && !PLAN_IDS.has(payload.planInterest)) {
+    errors.planInterest = 'Selecione um plano válido.'
   }
 
   if (payload.message.length > 800) {

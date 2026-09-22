@@ -10,9 +10,12 @@ export type Feature = {
 export type ModuleItem = {
   title: string
   description: string
+  /** Plano mínimo em que o módulo entra (copy comercial). */
+  fromPlan?: string
 }
 
 export type Plan = {
+  id: string
   name: string
   price: string
   note: string
@@ -268,29 +271,34 @@ export const features: Feature[] = [
 
 export const modules: ModuleItem[] = [
   {
-    title: 'Pacientes',
-    description: 'Cadastro, plano de saúde, histórico e prontuário em evolução.',
+    title: 'Pacientes e Core',
+    description: 'Cadastro, unidades, usuários e configurações da clínica.',
+    fromPlan: 'Starter',
   },
   {
-    title: 'Consultas',
-    description: 'Do agendamento ao check-in, atendimento e conclusão.',
+    title: 'Agenda e consultas',
+    description: 'Do agendamento ao check-in, atendimento e lembretes.',
+    fromPlan: 'Starter',
   },
   {
-    title: 'Corpo clínico',
-    description: 'Agenda, especialidades e valores por profissional.',
+    title: 'Clínico / PEP',
+    description: 'Prontuário, receitas, atestados, exames e corpo clínico.',
+    fromPlan: 'Starter',
   },
   {
-    title: 'Exames',
-    description: 'Solicitação, status e vínculo com o paciente.',
+    title: 'Financeiro básico',
+    description: 'Contas a pagar/receber e categorias financeiras.',
+    fromPlan: 'Starter',
   },
   {
-    title: 'Financeiro',
-    description: 'Contas a pagar/receber, despesas, repasses e fluxo de caixa.',
+    title: 'Financeiro completo e TISS',
+    description: 'Faturamento, glosas, repasses e importação TISS.',
+    fromPlan: 'Pro',
   },
   {
-    title: 'BI e relatórios',
-    description:
-      'Indicadores operacionais e financeiros, gráficos e exportação de relatórios.',
+    title: 'Fila, portal e BI',
+    description: 'Fila/senhas, portal do paciente, estoque, BI e LGPD.',
+    fromPlan: 'Pro',
   },
 ]
 
@@ -311,40 +319,49 @@ export const benefits = [
 
 export const plans: Plan[] = [
   {
-    name: 'Essencial',
-    price: 'Sob consulta',
-    note: 'Clínicas em operação enxuta',
+    id: 'starter',
+    name: 'Starter',
+    price: 'A partir de R$ 299/mês*',
+    note: 'Consultório ou clínica com 1 unidade',
     items: [
-      '1 unidade',
-      'Agendamentos e pacientes',
-      'Usuários com perfis',
-      'Suporte por e-mail',
+      'Core: clínicas, usuários, pacientes e configurações',
+      'Agenda, lembretes e operação clínica (PEP, receitas, exames)',
+      'Financeiro básico (pagar / receber)',
+      'Até 1 unidade e 5 usuários',
+      'Trial de 14 dias · suporte por e-mail',
     ],
   },
   {
-    name: 'Clínica',
-    price: 'Sob consulta',
-    note: 'O mais escolhido',
+    id: 'pro',
+    name: 'Pro',
+    price: 'A partir de R$ 799/mês*',
+    note: 'Clínica multidisciplinar em crescimento',
     featured: true,
     items: [
-      'Multi-clínica',
-      'Corpo clínico e agenda',
-      'Financeiro + BI integrado',
-      'Onboarding assistido',
+      'Tudo do Starter',
+      'Fila/senhas, faturamento TISS, portal do paciente',
+      'Suprimentos, BI operacional e LGPD',
+      'Até 3 unidades e 25 usuários',
+      'Pagamentos online · implantação assistida',
     ],
   },
   {
-    name: 'Rede',
-    price: 'Sob consulta',
-    note: 'Grupos e expansão',
+    id: 'enterprise',
+    name: 'Enterprise',
+    price: 'Sob proposta',
+    note: 'Redes, franquias e operação avançada',
     items: [
-      'Várias unidades',
-      'BI e relatórios avançados',
-      'Governança de acessos',
-      'Prioridade de suporte',
+      'Tudo do Pro + régua de cobrança (dunning)',
+      'Unidades e usuários sob contrato',
+      'Overrides, integrações e white-label sob demanda',
+      'SLA dedicado e CSM',
+      'Projeto customizado de migração',
     ],
   },
 ]
+
+export const plansDisclaimer =
+  '*Valores indicativos por clínica. Proposta final conforme volume, unidades e suporte.'
 
 export const faqIntro = {
   eyebrow: 'FAQ',
@@ -359,6 +376,7 @@ export const faqCategories = [
   'Equipe e acessos',
   'Multi-clínica',
   'BI e financeiro',
+  'Planos',
   'Começar',
 ] as const
 
@@ -496,6 +514,43 @@ export const faqs: FaqItem[] = [
     imageAlt: 'Tela de Business Intelligence do Sanavita',
   },
   {
+    id: 'planos-diferenca',
+    category: 'Planos',
+    question: 'Qual a diferença entre Starter, Pro e Enterprise?',
+    answer:
+      'Starter cobre a operação essencial (agenda, pacientes, PEP e financeiro básico) em 1 unidade. Pro adiciona fila, TISS, portal do paciente, estoque, BI e LGPD — até 3 unidades. Enterprise é sob contrato, com limites customizados, régua de cobrança e suporte dedicado.',
+    bullets: [
+      'Starter — consultório / clínica enxuta',
+      'Pro — clínica multidisciplinar em crescimento (recomendado)',
+      'Enterprise — redes e franquias',
+    ],
+    tip: 'Não sabe qual escolher? Peça uma proposta indicando o número de unidades e usuários — sugerimos o plano certo.',
+  },
+  {
+    id: 'trial',
+    category: 'Planos',
+    question: 'Tem período de teste?',
+    answer:
+      'Sim. Novos tenants começam com trial do Starter (14 dias) para validar o fluxo com a equipe. Depois, você ativa o plano contratado ou faz upgrade para o Pro/Enterprise.',
+    bullets: [
+      '14 dias para conhecer a operação',
+      'Upgrade sem perder cadastros',
+      'Sem compromisso na demonstração comercial',
+    ],
+  },
+  {
+    id: 'upgrade-modulos',
+    category: 'Planos',
+    question: 'Consigo liberar só alguns módulos depois?',
+    answer:
+      'Sim. O acesso é por pacotes (módulos) no plano do grupo. Se a clínica crescer, fazemos upgrade de plano ou incluímos add-ons (ex.: pagamentos online, régua de cobrança) sem trocar de sistema.',
+    bullets: [
+      'Módulos alinhados ao que aparece no menu',
+      'Limites de unidades e usuários por plano',
+      'Add-ons quando fizer sentido comercial',
+    ],
+  },
+  {
     id: 'implantacao',
     category: 'Começar',
     question: 'A implantação é demorada ou “pesada”?',
@@ -513,7 +568,7 @@ export const faqs: FaqItem[] = [
     category: 'Começar',
     question: 'Posso pedir uma demonstração sem compromisso?',
     answer:
-      'Pode — e deve. Preencha o formulário de contato com os dados da clínica. O time comercial retorna para agendar uma apresentação guiada, no seu ritmo.',
+      'Pode — e deve. Preencha o formulário de contato com os dados da clínica e o plano de interesse. O time comercial retorna para agendar uma apresentação guiada, no seu ritmo.',
     bullets: [
       'Sem compromisso comercial na primeira conversa',
       'Foco na operação da sua clínica',

@@ -75,6 +75,23 @@ function setupContactForm() {
   if (!form || !note) return
   const submit = qs<HTMLButtonElement>('[data-submit]', form)
   if (!submit) return
+  const planSelect = qs<HTMLSelectElement>('[data-plan-select]', form)
+
+  const applyPlanInterest = (planId: string | null | undefined) => {
+    if (!planSelect || !planId) return
+    const normalized = planId.trim().toLowerCase()
+    if (!['starter', 'pro', 'enterprise'].includes(normalized)) return
+    planSelect.value = normalized
+  }
+
+  const params = new URLSearchParams(window.location.search)
+  applyPlanInterest(params.get('plano'))
+
+  qsa<HTMLAnchorElement>('[data-plan-interest]').forEach((link) => {
+    on(link, 'click', () => {
+      applyPlanInterest(link.dataset.planInterest)
+    })
+  })
 
   on(form, 'submit', (event) => {
     event.preventDefault()

@@ -488,6 +488,15 @@ textarea {
   font-size: 0.95rem;
 }
 
+.module-card__plan {
+  margin: 0 0 0.45rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--brand);
+}
+
 .benefits__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -990,6 +999,13 @@ textarea {
 
 .plan li + li {
   margin-top: 0.35rem;
+}
+
+.plans__disclaimer {
+  margin: 1.25rem 0 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
 }
 
 .faq {

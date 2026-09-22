@@ -47,12 +47,26 @@
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Web",
         "description": "Sistema de gestão para clínicas com agenda, pacientes, corpo clínico e financeiro.",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "BRL",
-          "description": "Planos sob consulta"
-        },
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Starter",
+            "priceCurrency": "BRL",
+            "description": "Agenda, PEP e financeiro básico — 1 unidade"
+          },
+          {
+            "@type": "Offer",
+            "name": "Pro",
+            "priceCurrency": "BRL",
+            "description": "TISS, portal do paciente, BI e até 3 unidades"
+          },
+          {
+            "@type": "Offer",
+            "name": "Enterprise",
+            "priceCurrency": "BRL",
+            "description": "Redes e franquias — sob proposta"
+          }
+        ],
         "provider": {
           "@type": "Organization",
           "name": "Sanavita",
