@@ -37,11 +37,77 @@ export function planItems(plan: PublicPlan): string[] {
   return [`${units} e ${users}${trial}`]
 }
 
-export async function fetchPlans(signal?: AbortSignal): Promise<PublicPlan[]> {
-  if (!API_URL) throw new Error('VITE_PANEL_API_URL não configurada')
-  const response = await fetch(`${API_URL}/public/plans`, { signal })
-  if (!response.ok) throw new Error(`Planos indisponíveis (HTTP ${response.status})`)
-  return (await response.json()) as PublicPlan[]
+/** Cópia gravada pelo painel no bucket do site a cada mudança no catálogo. */
+const SNAPSHOT_URL = `${import.meta.env.BASE_URL}plans.json`
+const STORAGE_KEY = 'sanavita:last-plans'
+const API_TIMEOUT_MS = 5000
+
+export type PlansSource = 'api' | 'snapshot' | 'browser'
+
+function isPlan(value: unknown): value is PublicPlan {
+  const plan = value as PublicPlan
+  return typeof plan?.code === 'string' && typeof plan?.name === 'string'
+}
+
+/** Aceita a lista da API ou o formato do snapshot ({ generated_at, plans }). */
+function toPlans(body: unknown): PublicPlan[] {
+  const list = Array.isArray(body) ? body : (body as { plans?: unknown })?.plans
+  if (!Array.isArray(list) || !list.every(isPlan)) throw new Error('Formato de planos inválido')
+  return list.map((plan) => ({ ...plan, highlights: plan.highlights ?? [] }))
+}
+
+async function getJson(url: string, timeoutMs: number): Promise<unknown> {
+  const controller = new AbortController()
+  const timer = window.setTimeout(() => controller.abort(), timeoutMs)
+  try {
+    const response = await fetch(url, { signal: controller.signal, cache: 'no-cache' })
+    if (!response.ok) throw new Error(`HTTP ${response.status} em ${url}`)
+    return await response.json()
+  } finally {
+    window.clearTimeout(timer)
+  }
+}
+
+function remember(plans: PublicPlan[]) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(plans))
+  } catch {
+    // Modo privado / storage cheio: segue sem a cópia local.
+  }
+}
+
+function recall(): PublicPlan[] | null {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY)
+    return stored ? toPlans(JSON.parse(stored)) : null
+  } catch {
+    return null
+  }
+}
+
+/**
+ * Planos na ordem de preferência: API do painel (mais atual) -> cópia do painel
+ * no bucket do site -> última lista vista neste navegador.
+ */
+export async function fetchPlans(): Promise<{ plans: PublicPlan[]; source: PlansSource }> {
+  const attempts: Array<[PlansSource, () => Promise<unknown>]> = [
+    ['snapshot', () => getJson(SNAPSHOT_URL, API_TIMEOUT_MS)],
+  ]
+  if (API_URL) attempts.unshift(['api', () => getJson(`${API_URL}/public/plans`, API_TIMEOUT_MS)])
+
+  for (const [source, load] of attempts) {
+    try {
+      const plans = toPlans(await load())
+      remember(plans)
+      return { plans, source }
+    } catch (error) {
+      console.warn(`Planos: ${source} indisponível`, error)
+    }
+  }
+
+  const stored = recall()
+  if (stored) return { plans: stored, source: 'browser' }
+  throw new Error('Planos indisponíveis (API, cópia do site e navegador)')
 }
 
 function renderPlan(plan: PublicPlan): string {
@@ -113,7 +179,8 @@ export async function loadPlans(): Promise<void> {
   container.setAttribute('aria-busy', 'true')
   container.innerHTML = renderPlansLoading()
   try {
-    const plans = await fetchPlans()
+    const { plans, source } = await fetchPlans()
+    container.dataset.plansSource = source
     container.innerHTML = plans.length
       ? plans.map(renderPlan).join('')
       : `<div class="plans__status" role="status"><p>Planos sob consulta: fale com o time comercial.</p></div>`
