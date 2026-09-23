@@ -18,8 +18,17 @@ Os cards da seção **Planos** e as opções do formulário vêm da API do paine
 controle (`GET {VITE_PANEL_API_URL}/public/plans`, sem login). Aparecem os planos
 **públicos** com versão **publicada**, na ordem e com o destaque "Recomendado"
 definidos no painel — criar/publicar um plano lá já o mostra no site, sem novo deploy
-(a resposta tem cache de 60 s). Se a API não responder, o site mostra um aviso com
-opção de tentar de novo.
+(a resposta tem cache de 60 s).
+
+Se a API do painel não responder (ex.: ambiente desligado à noite), o site usa os
+**últimos planos conhecidos**, nesta ordem:
+
+1. `/plans.json` no próprio bucket — cópia que o painel grava a cada edição/publicação
+   de plano e na subida da API (`SITE_PLANS_BUCKET`, configurado pelo `sanavita_iac`).
+   O deploy do site não apaga esse arquivo.
+2. A última lista vista neste navegador (`localStorage`).
+
+Só sem nenhuma dessas fontes aparece o aviso com opção de tentar de novo.
 
 ## Build
 
