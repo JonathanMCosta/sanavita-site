@@ -1,0 +1,115 @@
+# Site institucional (sanavita_site) — Vite → S3 (+ CloudFront se existir)
+# Variable Group: sanavita-aws-site-dev | Service connection: aws-sanavita
+#
+# Variáveis (valores em sanavita_iac: terraform output azure_devops_variable_groups_hint):
+#   AWS_REGION, S3_BUCKET
+#   VITE_PANEL_API_URL (URL da API do painel + /api/v1, sem barra final)
+#     Os planos exibidos no site vêm de GET $(VITE_PANEL_API_URL)/public/plans.
+#   CLOUDFRONT_DISTRIBUTION_ID (opcional — vazio se CloudFront ainda não estiver liberado)
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - main
+      - develop
+
+pr:
+  branches:
+    include:
+      - main
+      - develop
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  - group: sanavita-aws-site-dev
+  - name: nodeVersion
+    value: '22.x'
+  - name: npm_config_cache
+    value: $(Pipeline.Workspace)/.npm
+
+stages:
+  - stage: Build
+    displayName: Build site
+    jobs:
+      - job: ViteBuild
+        displayName: npm ci + build (tsc + vite)
+        steps:
+          - checkout: self
+
+          - task: NodeTool@0
+            displayName: Use Node $(nodeVersion)
+            inputs:
+              versionSpec: $(nodeVersion)
+
+          - task: Cache@2
+            displayName: Cache npm
+            inputs:
+              key: 'npm | "$(Agent.OS)" | "$(nodeVersion)" | package-lock.json'
+              restoreKeys: |
+                npm | "$(Agent.OS)" | "$(nodeVersion)"
+                npm | "$(Agent.OS)"
+              path: $(npm_config_cache)
+
+          - script: |
+              set -euo pipefail
+              case "${VITE_PANEL_API_URL:-}" in
+                ""|'$('*) echo "##vso[task.logissue type=error]VITE_PANEL_API_URL não definida no variable group"; exit 1 ;;
+              esac
+              npm ci --prefer-offline --no-audit --no-fund
+              npm run build
+            displayName: Install and build
+            env:
+              VITE_PANEL_API_URL: $(VITE_PANEL_API_URL)
+
+          - publish: dist
+            artifact: site-dist
+            displayName: Publish dist artifact
+
+  # Deploy sem Environment (sem aprovação). Em prod, use job deployment + environment.
+  - stage: Deploy
+    displayName: Deploy S3
+    dependsOn: Build
+    condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'), or(eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['Build.SourceBranch'], 'refs/heads/develop')))
+    jobs:
+      - job: DeploySite
+        displayName: Sync S3 (and CloudFront if configured)
+        steps:
+          - download: current
+            artifact: site-dist
+
+          - task: AWSShellScript@1
+            displayName: aws s3 sync (+ invalidation opcional)
+            inputs:
+              awsCredentials: aws-sanavita
+              regionName: $(AWS_REGION)
+              scriptType: inline
+              inlineScript: |
+                set -euo pipefail
+                DIST="$(Pipeline.Workspace)/site-dist"
+
+                # Só assets/ tem hash no nome; screenshots, favicon e robots mudam sem trocar de URL.
+                aws s3 sync "$DIST/assets" "s3://$(S3_BUCKET)/assets/" \
+                  --delete \
+                  --cache-control "public,max-age=31536000,immutable"
+
+                aws s3 sync "$DIST" "s3://$(S3_BUCKET)/" \
+                  --delete \
+                  --exclude "assets/*" \
+                  --exclude "*.html" \
+                  --cache-control "public,max-age=3600"
+
+                aws s3 sync "$DIST" "s3://$(S3_BUCKET)/" \
+                  --exclude "*" \
+                  --include "*.html" \
+                  --cache-control "public,max-age=0,must-revalidate"
+
+                if [ -n "${CLOUDFRONT_DISTRIBUTION_ID:-}" ] && [ "${CLOUDFRONT_DISTRIBUTION_ID}" != "null" ]; then
+                  aws cloudfront create-invalidation \
+                    --distribution-id "$(CLOUDFRONT_DISTRIBUTION_ID)" \
+                    --paths "/*"
+                else
+                  echo "CLOUDFRONT_DISTRIBUTION_ID vazio — deploy só S3 (website)."
+                fi

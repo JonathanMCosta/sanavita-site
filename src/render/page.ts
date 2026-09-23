@@ -17,7 +17,7 @@ import {
 import { escapeHtml } from '../lib/dom'
 import { renderPlansLoading } from '../lib/plans'
 
-/** Respeita o base do Vite (ex.: /sanavita-site/ no GitHub Pages). */
+/** Respeita o base do Vite. */
 function asset(path: string) {
   const base = import.meta.env.BASE_URL
   return `${base}${path.replace(/^\//, '')}`
