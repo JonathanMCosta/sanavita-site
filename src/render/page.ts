@@ -9,20 +9,13 @@ import {
   howItWorksClose,
   howItWorksIntro,
   modules,
-  plans,
   plansDisclaimer,
   site,
   stats,
   steps,
 } from '../content'
-
-function escapeHtml(value: string) {
-  return value
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-}
+import { escapeHtml } from '../lib/dom'
+import { renderPlansLoading } from '../lib/plans'
 
 /** Respeita o base do Vite (ex.: /sanavita-site/ no GitHub Pages). */
 function asset(path: string) {
@@ -362,34 +355,12 @@ export function renderPage() {
           <p class="eyebrow">Comercial</p>
           <h2>Planos com módulos certos para cada momento da clínica.</h2>
           <p>
-            Starter, Pro e Enterprise — acesso liberado por pacotes, alinhado ao
-            que a equipe vê no sistema. Valores sob proposta após entender volume
-            e suporte.
+            Acesso liberado por pacotes, alinhado ao que a equipe vê no sistema.
+            Valores sob proposta após entender volume e suporte.
           </p>
         </header>
-        <div class="plans">
-          ${plans
-            .map(
-              (plan) => `
-            <article class="plan${plan.featured ? ' plan--featured' : ''}" data-reveal>
-              ${plan.featured ? '<p class="plan__badge">Recomendado</p>' : ''}
-              <h3>${escapeHtml(plan.name)}</h3>
-              <p class="plan__price">${escapeHtml(plan.price)}</p>
-              <p class="plan__note">${escapeHtml(plan.note)}</p>
-              <ul>
-                ${plan.items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
-              </ul>
-              <a
-                class="btn ${plan.featured ? 'btn--primary' : 'btn--soft'}"
-                href="#contato"
-                data-plan-interest="${escapeHtml(plan.id)}"
-              >
-                Solicitar proposta
-              </a>
-            </article>
-          `
-            )
-            .join('')}
+        <div class="plans" data-plans data-reveal aria-live="polite">
+          ${renderPlansLoading()}
         </div>
         <p class="plans__disclaimer" data-reveal>${escapeHtml(plansDisclaimer)}</p>
       </div>
@@ -529,9 +500,6 @@ export function renderPage() {
               Plano de interesse
               <select name="planInterest" data-plan-select>
                 <option value="">Ainda não sei</option>
-                <option value="starter">Starter</option>
-                <option value="pro">Pro</option>
-                <option value="enterprise">Enterprise</option>
               </select>
             </label>
             <label>

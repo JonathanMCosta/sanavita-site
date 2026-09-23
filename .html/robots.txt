@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jonathanmcosta.github.io/sanavita-site/sitemap.xml

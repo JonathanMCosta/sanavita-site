@@ -14,15 +14,6 @@ export type ModuleItem = {
   fromPlan?: string
 }
 
-export type Plan = {
-  id: string
-  name: string
-  price: string
-  note: string
-  featured?: boolean
-  items: string[]
-}
-
 export type FaqItem = {
   id: string
   category: string
@@ -350,49 +341,6 @@ export const benefits = [
   {
     title: 'Gestão com indicadores',
     text: 'BI integrado mostra ocupação, produtividade e saúde financeira — para decidir com dados, não com feeling.',
-  },
-]
-
-export const plans: Plan[] = [
-  {
-    id: 'starter',
-    name: 'Starter',
-    price: 'A partir de R$ 299/mês*',
-    note: 'Consultório ou clínica com 1 unidade',
-    items: [
-      'Clínicas, usuários, pacientes e configurações',
-      'Agenda (slots de 30 min), lembretes e lista de espera',
-      'PEP: prontuário, receitas, atestados e exames',
-      'Financeiro básico (contas a pagar e receber)',
-      'Até 1 unidade e 5 usuários · trial de 14 dias',
-    ],
-  },
-  {
-    id: 'pro',
-    name: 'Pro',
-    price: 'A partir de R$ 799/mês*',
-    note: 'Clínica multidisciplinar em crescimento',
-    featured: true,
-    items: [
-      'Tudo do Starter',
-      'Portal do paciente (agendar, documentos e financeiro)',
-      'Faturamento TISS (guias, lotes e glosas) + repasses',
-      'Estoque/compras, BI com Excel/PDF e módulo LGPD',
-      'Até 3 unidades e 25 usuários · implantação assistida',
-    ],
-  },
-  {
-    id: 'enterprise',
-    name: 'Enterprise',
-    price: 'Sob proposta',
-    note: 'Redes, franquias e operação avançada',
-    items: [
-      'Tudo do Pro, com limites sob contrato',
-      'Unidades e usuários conforme a operação da rede',
-      'Governança de acessos e suporte com SLA',
-      'Integrações e customizações sob demanda',
-      'Projeto de migração e CSM dedicado',
-    ],
   },
 ]
 

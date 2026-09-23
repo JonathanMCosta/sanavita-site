@@ -1,3 +1,11 @@
+export function escapeHtml(value: string) {
+  return value
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+}
+
 export function qs<T extends Element>(
   selector: string,
   root: ParentNode = document

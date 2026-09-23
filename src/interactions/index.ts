@@ -1,4 +1,5 @@
 import { on, qs, qsa } from '../lib/dom'
+import { PLANS_LOADED_EVENT } from '../lib/plans'
 import {
   persistLead,
   readContactForm,
@@ -77,20 +78,21 @@ function setupContactForm() {
   if (!submit) return
   const planSelect = qs<HTMLSelectElement>('[data-plan-select]', form)
 
-  const applyPlanInterest = (planId: string | null | undefined) => {
-    if (!planSelect || !planId) return
-    const normalized = planId.trim().toLowerCase()
-    if (!['starter', 'pro', 'enterprise'].includes(normalized)) return
-    planSelect.value = normalized
+  const applyPlanInterest = (planCode: string | null | undefined) => {
+    if (!planSelect || !planCode) return
+    const normalized = planCode.trim().toLowerCase()
+    const exists = Array.from(planSelect.options).some((option) => option.value === normalized)
+    if (exists) planSelect.value = normalized
   }
 
   const params = new URLSearchParams(window.location.search)
   applyPlanInterest(params.get('plano'))
+  document.addEventListener(PLANS_LOADED_EVENT, () => applyPlanInterest(params.get('plano')))
 
-  qsa<HTMLAnchorElement>('[data-plan-interest]').forEach((link) => {
-    on(link, 'click', () => {
-      applyPlanInterest(link.dataset.planInterest)
-    })
+  // Os cards de plano chegam da API depois do setup, por isso a delegação.
+  on(document, 'click', (event) => {
+    const link = (event.target as Element | null)?.closest<HTMLElement>('[data-plan-interest]')
+    if (link) applyPlanInterest(link.dataset.planInterest)
   })
 
   on(form, 'submit', (event) => {
@@ -221,16 +223,15 @@ function setupFaq() {
 }
 
 function setupSmoothAnchors() {
-  qsa<HTMLAnchorElement>('a[href^="#"]').forEach((link) => {
-    on(link, 'click', (event) => {
-      const id = link.getAttribute('href')?.slice(1)
-      if (!id) return
-      const target = document.getElementById(id)
-      if (!target) return
-      event.preventDefault()
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      history.replaceState(null, '', `#${id}`)
-    })
+  on(document, 'click', (event) => {
+    const link = (event.target as Element | null)?.closest<HTMLAnchorElement>('a[href^="#"]')
+    const id = link?.getAttribute('href')?.slice(1)
+    if (!id) return
+    const target = document.getElementById(id)
+    if (!target) return
+    event.preventDefault()
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    history.replaceState(null, '', `#${id}`)
   })
 }
 

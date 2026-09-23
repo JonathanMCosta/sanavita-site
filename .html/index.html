@@ -1,0 +1,1528 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Sanavita — sistema completo para clínicas: agendamentos, pacientes, corpo clínico, financeiro e BI integrado, com operação multiunidade em um só lugar."
+    />
+    <meta
+      name="keywords"
+      content="sistema para clínicas, software médico, agendamento, gestão clínica, BI clínico, relatórios, sanavita"
+    />
+    <meta name="theme-color" content="#0A4D56" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Sanavita" />
+    <meta property="og:title" content="Sanavita — Gestão inteligente para clínicas" />
+    <meta
+      property="og:description"
+      content="Organize agenda, pacientes, equipe, financeiro e BI da sua clínica em um único sistema."
+    />
+    <meta property="og:image" content="./screenshots/bi-dashboard.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sanavita — Gestão inteligente para clínicas" />
+    <meta
+      name="twitter:description"
+      content="Sistema completo para clínicas modernas: agenda, pacientes, financeiro e BI integrado."
+    />
+    <title>Sanavita — Gestão inteligente para clínicas</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Sanavita",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "Sistema de gestão para clínicas com agenda, pacientes, corpo clínico e financeiro.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "BRL",
+          "description": "Planos sob consulta"
+        },
+        "provider": {
+          "@type": "Organization",
+          "name": "Sanavita",
+          "email": "comercial@sanavita.com.br"
+        }
+      }
+    </script>
+  </head>
+  <body>
+
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
+  <header class="topbar" data-topbar>
+    <div class="container topbar__inner">
+      <a class="brand" href="#inicio" aria-label="Sanavita início">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__name">Sanavita</span>
+      </a>
+
+      <nav class="nav" data-nav aria-label="Principal">
+        <a href="#produto">Produto</a>
+        <a href="#modulos">Módulos</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#planos">Planos</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contato">Contato</a>
+        <div class="nav__mobile-ctas">
+          <a class="btn btn--ghost" href="#contato">Falar com vendas</a>
+          <a class="btn btn--primary" href="#demo">Ver demonstração</a>
+        </div>
+      </nav>
+
+      <div class="topbar__actions">
+        <a class="btn btn--ghost topbar__cta" href="#contato">Falar com vendas</a>
+        <a class="btn btn--primary topbar__cta" href="#demo">Ver demonstração</a>
+        <button
+          class="menu-btn"
+          type="button"
+          data-menu-btn
+          aria-expanded="false"
+          aria-controls="menu-principal"
+          aria-label="Abrir menu"
+        >
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" id="inicio">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <p class="brand-hero">Sanavita</p>
+          <h1>O sistema que organiza a clínica do agendamento aos indicadores.</h1>
+          <p class="lead">
+            Plataforma para clínicas: pacientes, agenda, prontuário, financeiro,
+            portal do paciente e BI integrado — simples para a recepção e clara
+            para a gestão.
+          </p>
+          <div class="hero__cta">
+            <a class="btn btn--primary btn--lg" href="#contato">Quero apresentar na minha clínica</a>
+            <a class="btn btn--soft btn--lg" href="#produto">Explorar o produto</a>
+          </div>
+          <ul class="hero__points">
+            <li>Agenda com slots de 30 minutos</li>
+            <li>PEP, financeiro e BI com Excel/PDF</li>
+            <li>Multi-clínica e portal do paciente</li>
+          </ul>
+        </div>
+
+        <div class="hero__visual" id="demo">
+          <div class="device" data-reveal>
+            <div class="device__chrome" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+            <img
+              src="./screenshots/bi-dashboard.png"
+              alt="Painel de BI do Sanavita com indicadores e gráficos"
+              class="device__screen"
+              width="1024"
+              height="576"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </div>
+          <div class="hero__float" data-reveal>
+            <img
+              src="./screenshots/consulta-detalhe.png"
+              alt="Detalhe de consulta no Sanavita"
+              width="1024"
+              height="306"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Destaques do produto">
+      <div class="container stats__grid">
+        
+          <article class="stat" data-reveal>
+            <strong>1 sistema</strong>
+            <span>para toda a operação</span>
+          </article>
+        
+          <article class="stat" data-reveal>
+            <strong>BI integrado</strong>
+            <span>indicadores e relatórios</span>
+          </article>
+        
+          <article class="stat" data-reveal>
+            <strong>Multi-clínica</strong>
+            <span>unidades no mesmo login</span>
+          </article>
+        
+          <article class="stat" data-reveal>
+            <strong>Perfis</strong>
+            <span>recepção, médico e gestão</span>
+          </article>
+        
+      </div>
+    </section>
+
+    <section class="section" id="para-quem">
+      <div class="container">
+        <header class="section__header" data-reveal>
+          <p class="eyebrow">Para quem é</p>
+          <h2>Feito para quem faz a clínica acontecer.</h2>
+        </header>
+        <div class="audience">
+          
+            <article class="audience-card" data-reveal>
+              <h3>Recepção</h3>
+              <p>Agenda com horários livres, paciente e plano de saúde no mesmo fluxo — sem ligar para confirmar disponibilidade.</p>
+            </article>
+          
+            <article class="audience-card" data-reveal>
+              <h3>Corpo clínico</h3>
+              <p>Agenda por especialidade, valores de consulta e atendimento com visão clara do paciente.</p>
+            </article>
+          
+            <article class="audience-card" data-reveal>
+              <h3>Gestão</h3>
+              <p>Clínicas, usuários, permissões, financeiro e BI no mesmo lugar — indicadores reais para decidir com segurança.</p>
+            </article>
+          
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="produto">
+      <div class="container">
+        <header class="section__header" data-reveal>
+          <p class="eyebrow">Produto em ação</p>
+          <h2>Telas reais. Fluxos pensados para o dia a dia.</h2>
+          <p>
+            Conheça os principais módulos do Sanavita com capturas do sistema
+            em uso — da agenda ao atendimento, com BI integrado para a gestão.
+          </p>
+        </header>
+        <div class="features">
+          
+    <article class="feature" id="agenda" data-reveal>
+      <div class="feature__copy">
+        <p class="eyebrow">Módulo 01</p>
+        <h3>Agenda que respeita a rotina da clínica</h3>
+        <p>Horários livres do médico, bloqueio só do slot ocupado e visão clara do dia. Menos conflito, mais consultas confirmadas.</p>
+        <ul class="feature__bullets"><li>Disponibilidade por dia da semana</li><li>Slots a cada 30 minutos</li><li>Ocupação pontual, sem zerar o dia</li></ul>
+      </div>
+      <figure class="feature__media">
+        <button
+          type="button"
+          class="media-zoom"
+          data-lightbox-src="./screenshots/agenda.png"
+          data-lightbox-alt="Tela de agenda diária do Sanavita"
+          aria-label="Ampliar imagem: Tela de agenda diária do Sanavita"
+        >
+          <img
+            src="./screenshots/agenda.png"
+            alt="Tela de agenda diária do Sanavita"
+            loading="lazy"
+            decoding="async"
+          />
+        </button>
+      </figure>
+    </article>
+  
+    <article class="feature feature--reverse" id="consultas" data-reveal>
+      <div class="feature__copy">
+        <p class="eyebrow">Módulo 02</p>
+        <h3>Agendamento completo em poucos cliques</h3>
+        <p>Paciente, plano de saúde, especialidade, médico, valor e horário — tudo no mesmo fluxo, com regras de disponibilidade.</p>
+        <ul class="feature__bullets"><li>Plano do paciente ou particular</li><li>Valor da especialidade automático</li><li>Validação de horário livre</li></ul>
+      </div>
+      <figure class="feature__media">
+        <button
+          type="button"
+          class="media-zoom"
+          data-lightbox-src="./screenshots/agendar-consulta.png"
+          data-lightbox-alt="Tela de agendar nova consulta"
+          aria-label="Ampliar imagem: Tela de agendar nova consulta"
+        >
+          <img
+            src="./screenshots/agendar-consulta.png"
+            alt="Tela de agendar nova consulta"
+            loading="lazy"
+            decoding="async"
+          />
+        </button>
+      </figure>
+    </article>
+  
+    <article class="feature" id="atendimento" data-reveal>
+      <div class="feature__copy">
+        <p class="eyebrow">Módulo 03</p>
+        <h3>Atendimento com visão 360º</h3>
+        <p>Detalhes da consulta, dados do paciente, médico responsável e informações financeiras em um painel objetivo.</p>
+        <ul class="feature__bullets"><li>Status da consulta em tempo real</li><li>Dados clínicos e financeiros juntos</li><li>Ações de check-in e atendimento</li></ul>
+      </div>
+      <figure class="feature__media">
+        <button
+          type="button"
+          class="media-zoom"
+          data-lightbox-src="./screenshots/consulta-detalhe.png"
+          data-lightbox-alt="Detalhe da consulta no Sanavita"
+          aria-label="Ampliar imagem: Detalhe da consulta no Sanavita"
+        >
+          <img
+            src="./screenshots/consulta-detalhe.png"
+            alt="Detalhe da consulta no Sanavita"
+            loading="lazy"
+            decoding="async"
+          />
+        </button>
+      </figure>
+    </article>
+  
+    <article class="feature feature--reverse" id="clinicas" data-reveal>
+      <div class="feature__copy">
+        <p class="eyebrow">Módulo 04</p>
+        <h3>Multi-clínica sem complicação</h3>
+        <p>Gerencie unidades, especialidades, equipe e operação em um único sistema — com troca rápida de contexto.</p>
+        <ul class="feature__bullets"><li>Troca de clínica no topo</li><li>Busca e filtros rápidos</li><li>Especialidades por unidade</li></ul>
+      </div>
+      <figure class="feature__media">
+        <button
+          type="button"
+          class="media-zoom"
+          data-lightbox-src="./screenshots/clinicas.png"
+          data-lightbox-alt="Lista de clínicas no Sanavita"
+          aria-label="Ampliar imagem: Lista de clínicas no Sanavita"
+        >
+          <img
+            src="./screenshots/clinicas.png"
+            alt="Lista de clínicas no Sanavita"
+            loading="lazy"
+            decoding="async"
+          />
+        </button>
+      </figure>
+    </article>
+  
+    <article class="feature" id="usuarios" data-reveal>
+      <div class="feature__copy">
+        <p class="eyebrow">Módulo 05</p>
+        <h3>Usuários e perfis sob controle</h3>
+        <p>Recepcionista, médico, gestor e proprietário com permissões claras. Segurança sem travar o dia a dia.</p>
+        <ul class="feature__bullets"><li>Lista com status e contato</li><li>Perfis coloridos e legíveis</li><li>Gestão centralizada da equipe</li></ul>
+      </div>
+      <figure class="feature__media">
+        <button
+          type="button"
+          class="media-zoom"
+          data-lightbox-src="./screenshots/usuarios-lista.png"
+          data-lightbox-alt="Lista de usuários do sistema"
+          aria-label="Ampliar imagem: Lista de usuários do sistema"
+        >
+          <img
+            src="./screenshots/usuarios-lista.png"
+            alt="Lista de usuários do sistema"
+            loading="lazy"
+            decoding="async"
+          />
+        </button>
+      </figure>
+    </article>
+  
+    <article class="feature feature--reverse" id="acessos" data-reveal>
+      <div class="feature__copy">
+        <p class="eyebrow">Módulo 06</p>
+        <h3>Acessos pensados para o corpo clínico</h3>
+        <p>Perfis clínicos e administrativos prontos para a realidade da clínica, com vínculo por unidade.</p>
+        <ul class="feature__bullets"><li>Proprietário, administrativo e recepção</li><li>Perfis clínicos por especialidade</li><li>Vínculo a uma ou mais clínicas</li></ul>
+      </div>
+      <figure class="feature__media">
+        <button
+          type="button"
+          class="media-zoom"
+          data-lightbox-src="./screenshots/perfis-acesso.png"
+          data-lightbox-alt="Configuração de perfis de acesso"
+          aria-label="Ampliar imagem: Configuração de perfis de acesso"
+        >
+          <img
+            src="./screenshots/perfis-acesso.png"
+            alt="Configuração de perfis de acesso"
+            loading="lazy"
+            decoding="async"
+          />
+        </button>
+      </figure>
+    </article>
+  
+    <article class="feature" id="bi" data-reveal>
+      <div class="feature__copy">
+        <p class="eyebrow">Módulo 07</p>
+        <h3>BI integrado para decidir com dados</h3>
+        <p>Business Intelligence nativo: indicadores de operação e financeiro no mesmo sistema da agenda — sem ferramenta à parte nem planilha solta.</p>
+        <ul class="feature__bullets"><li>KPIs de receita, despesas e lucro</li><li>Fluxo de caixa e despesas por categoria</li><li>Relatórios exportáveis (Excel e PDF)</li></ul>
+      </div>
+      <figure class="feature__media">
+        <button
+          type="button"
+          class="media-zoom"
+          data-lightbox-src="./screenshots/bi-dashboard.png"
+          data-lightbox-alt="Dashboard de BI do Sanavita com fluxo de caixa e categorias"
+          aria-label="Ampliar imagem: Dashboard de BI do Sanavita com fluxo de caixa e categorias"
+        >
+          <img
+            src="./screenshots/bi-dashboard.png"
+            alt="Dashboard de BI do Sanavita com fluxo de caixa e categorias"
+            loading="lazy"
+            decoding="async"
+          />
+        </button>
+      </figure>
+    </article>
+  
+    <article class="feature feature--reverse" id="financeiro" data-reveal>
+      <div class="feature__copy">
+        <p class="eyebrow">Módulo 08</p>
+        <h3>Financeiro e faturamento no mesmo lugar</h3>
+        <p>Contas a pagar e receber no dia a dia; no plano Pro, guias TISS, lotes, glosas e repasses médicos — sem planilha paralela.</p>
+        <ul class="feature__bullets"><li>Contas a pagar e receber com categorias</li><li>Faturamento TISS com exportação XML</li><li>Repasses e visão para a gestão</li></ul>
+      </div>
+      <figure class="feature__media">
+        <button
+          type="button"
+          class="media-zoom"
+          data-lightbox-src="./screenshots/bi-dashboard.png"
+          data-lightbox-alt="Indicadores financeiros no Sanavita"
+          aria-label="Ampliar imagem: Indicadores financeiros no Sanavita"
+        >
+          <img
+            src="./screenshots/bi-dashboard.png"
+            alt="Indicadores financeiros no Sanavita"
+            loading="lazy"
+            decoding="async"
+          />
+        </button>
+      </figure>
+    </article>
+  
+    <article class="feature" id="portal" data-reveal>
+      <div class="feature__copy">
+        <p class="eyebrow">Módulo 09</p>
+        <h3>Portal do paciente</h3>
+        <p>O paciente agenda, consulta documentos e acompanha o financeiro em área própria — com solicitação de acesso gerenciada pela clínica.</p>
+        <ul class="feature__bullets"><li>Login e agenda pelo portal</li><li>Receitas, atestados, exames e prontuários</li><li>Solicitações de acesso aprovadas pela equipe</li></ul>
+      </div>
+      <figure class="feature__media">
+        <button
+          type="button"
+          class="media-zoom"
+          data-lightbox-src="./screenshots/consulta-detalhe.png"
+          data-lightbox-alt="Fluxo de consulta e dados do paciente no Sanavita"
+          aria-label="Ampliar imagem: Fluxo de consulta e dados do paciente no Sanavita"
+        >
+          <img
+            src="./screenshots/consulta-detalhe.png"
+            alt="Fluxo de consulta e dados do paciente no Sanavita"
+            loading="lazy"
+            decoding="async"
+          />
+        </button>
+      </figure>
+    </article>
+  
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="modulos">
+      <div class="container">
+        <header class="section__header" data-reveal>
+          <p class="eyebrow">Ecossistema</p>
+          <h2>Tudo que a clínica precisa, conectado.</h2>
+        </header>
+        <div class="modules">
+          
+            <article class="module-card" data-reveal>
+              <p class="module-card__plan">A partir do Starter</p>
+              <h3>Pacientes e Core</h3>
+              <p>Cadastro, unidades, usuários, perfis e configurações da clínica.</p>
+            </article>
+          
+            <article class="module-card" data-reveal>
+              <p class="module-card__plan">A partir do Starter</p>
+              <h3>Agenda e consultas</h3>
+              <p>Horários livres, agendamento, check-in, atendimento e lista de espera.</p>
+            </article>
+          
+            <article class="module-card" data-reveal>
+              <p class="module-card__plan">A partir do Starter</p>
+              <h3>Clínico / PEP</h3>
+              <p>Prontuário, receitas, atestados, exames, laudos e corpo clínico.</p>
+            </article>
+          
+            <article class="module-card" data-reveal>
+              <p class="module-card__plan">A partir do Starter</p>
+              <h3>Financeiro básico</h3>
+              <p>Contas a pagar/receber, categorias e visão financeira do dia a dia.</p>
+            </article>
+          
+            <article class="module-card" data-reveal>
+              <p class="module-card__plan">A partir do Pro</p>
+              <h3>Faturamento TISS</h3>
+              <p>Guias, lotes, glosas e exportação/importação de XML TISS.</p>
+            </article>
+          
+            <article class="module-card" data-reveal>
+              <p class="module-card__plan">A partir do Pro</p>
+              <h3>Portal do paciente</h3>
+              <p>App do paciente: agendar, consultas, documentos e financeiro.</p>
+            </article>
+          
+            <article class="module-card" data-reveal>
+              <p class="module-card__plan">A partir do Pro</p>
+              <h3>Estoque e compras</h3>
+              <p>Medicamentos, inventário, compras e fornecedores.</p>
+            </article>
+          
+            <article class="module-card" data-reveal>
+              <p class="module-card__plan">A partir do Pro</p>
+              <h3>BI e LGPD</h3>
+              <p>Indicadores com exportação Excel/PDF e ferramentas de privacidade.</p>
+            </article>
+          
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="como-funciona">
+      <div class="container">
+        <header class="section__header section__header--wide" data-reveal>
+          <p class="eyebrow">Como funciona</p>
+          <h2>Simples de implantar. Fácil de usar no dia a dia.</h2>
+          <p>Em poucos passos a clínica deixa planilhas e anotações de lado. O Sanavita acompanha o fluxo real: cadastrar, agendar, atender e acompanhar resultados no BI — com telas claras para recepção, médicos e gestão.</p>
+        </header>
+
+        <div class="journey-nav" data-reveal aria-label="Etapas do fluxo">
+          
+            <a class="journey-nav__item" href="#passo-1">
+              <span>1</span>
+              Começo organizado
+            </a>
+          
+            <a class="journey-nav__item" href="#passo-2">
+              <span>2</span>
+              Horários que fazem sentido
+            </a>
+          
+            <a class="journey-nav__item" href="#passo-3">
+              <span>3</span>
+              Recepção sem fricção
+            </a>
+          
+            <a class="journey-nav__item" href="#passo-4">
+              <span>4</span>
+              Do check-in ao financeiro
+            </a>
+          
+            <a class="journey-nav__item" href="#passo-5">
+              <span>5</span>
+              Controle sem burocracia
+            </a>
+          
+            <a class="journey-nav__item" href="#passo-6">
+              <span>6</span>
+              Dados que orientam a gestão
+            </a>
+          
+        </div>
+
+        <ol class="journey">
+          
+            <li class="journey-step" id="passo-1" data-reveal>
+              <div class="journey-step__copy">
+                <div class="journey-step__meta">
+                  <span class="step__num">1</span>
+                  <span class="journey-step__audience">Ideal para o gestor na implantação</span>
+                </div>
+                <p class="journey-step__kicker">Começo organizado</p>
+                <h3>Prepare a clínica e a equipe</h3>
+                <p>Cadastre a unidade, especialidades e profissionais. Defina quem é recepcionista, médico ou gestor — cada pessoa entra com o acesso certo, sem complicação.</p>
+                <ul class="feature__bullets"><li>Uma ou várias clínicas no mesmo sistema</li><li>Perfis prontos: recepção, clínico e administração</li><li>Especialidades e valores vinculados à operação</li></ul>
+                <p class="journey-step__tip">Dica amigável: comece por uma unidade e um turno. Em poucos dias a equipe já opera com segurança.</p>
+              </div>
+              <figure class="journey-step__media">
+                <button
+                  type="button"
+                  class="media-zoom"
+                  data-lightbox-src="./screenshots/clinicas.png"
+                  data-lightbox-alt="Lista de clínicas no Sanavita"
+                  aria-label="Ampliar: Lista de clínicas no Sanavita"
+                >
+                  <img
+                    src="./screenshots/clinicas.png"
+                    alt="Lista de clínicas no Sanavita"
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="640"
+                  />
+                </button>
+                <figcaption>Lista de clínicas no Sanavita</figcaption>
+              </figure>
+            </li>
+          
+            <li class="journey-step journey-step--reverse" id="passo-2" data-reveal>
+              <div class="journey-step__copy">
+                <div class="journey-step__meta">
+                  <span class="step__num">2</span>
+                  <span class="journey-step__audience">Pensado para recepção e corpo clínico</span>
+                </div>
+                <p class="journey-step__kicker">Horários que fazem sentido</p>
+                <h3>Configure a agenda dos médicos</h3>
+                <p>Informe os dias e períodos em que cada profissional atende. Na hora de marcar, o Sanavita mostra só os horários livres — um horário ocupado não bloqueia o restante do dia.</p>
+                <ul class="feature__bullets"><li>Agenda por médico e especialidade</li><li>Slots a cada 30 minutos</li><li>Menos conflito e menos ligação “só para confirmar”</li></ul>
+                <p class="journey-step__tip">Dica amigável: cadastre a rotina real (ex.: seg/qua/sex 8h–17h). O sistema faz o resto.</p>
+              </div>
+              <figure class="journey-step__media">
+                <button
+                  type="button"
+                  class="media-zoom"
+                  data-lightbox-src="./screenshots/agenda.png"
+                  data-lightbox-alt="Agenda diária no Sanavita"
+                  aria-label="Ampliar: Agenda diária no Sanavita"
+                >
+                  <img
+                    src="./screenshots/agenda.png"
+                    alt="Agenda diária no Sanavita"
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="640"
+                  />
+                </button>
+                <figcaption>Agenda diária no Sanavita</figcaption>
+              </figure>
+            </li>
+          
+            <li class="journey-step" id="passo-3" data-reveal>
+              <div class="journey-step__copy">
+                <div class="journey-step__meta">
+                  <span class="step__num">3</span>
+                  <span class="journey-step__audience">O dia a dia da recepção</span>
+                </div>
+                <p class="journey-step__kicker">Recepção sem fricção</p>
+                <h3>Agende a consulta em um fluxo só</h3>
+                <p>Escolha o paciente, o plano (ou particular), a especialidade, o médico, a data e o horário. O valor da consulta pode vir automaticamente da especialidade — tudo na mesma tela.</p>
+                <ul class="feature__bullets"><li>Paciente e plano de saúde no mesmo cadastro</li><li>Só horários disponíveis aparecem</li><li>Valor e desconto com máscara monetária</li></ul>
+                <p class="journey-step__tip">Dica amigável: em poucos cliques a consulta está marcada e a equipe segue para o próximo atendimento.</p>
+              </div>
+              <figure class="journey-step__media">
+                <button
+                  type="button"
+                  class="media-zoom"
+                  data-lightbox-src="./screenshots/agendar-consulta.png"
+                  data-lightbox-alt="Tela de agendar nova consulta"
+                  aria-label="Ampliar: Tela de agendar nova consulta"
+                >
+                  <img
+                    src="./screenshots/agendar-consulta.png"
+                    alt="Tela de agendar nova consulta"
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="640"
+                  />
+                </button>
+                <figcaption>Tela de agendar nova consulta</figcaption>
+              </figure>
+            </li>
+          
+            <li class="journey-step journey-step--reverse" id="passo-4" data-reveal>
+              <div class="journey-step__copy">
+                <div class="journey-step__meta">
+                  <span class="step__num">4</span>
+                  <span class="journey-step__audience">Atendimento e gestão lado a lado</span>
+                </div>
+                <p class="journey-step__kicker">Do check-in ao financeiro</p>
+                <h3>Atenda com visão completa do paciente</h3>
+                <p>No atendimento, a equipe vê status da consulta, dados do paciente, médico responsável e detalhes financeiros. Check-in, início e conclusão ficam registrados no mesmo painel.</p>
+                <ul class="feature__bullets"><li>Status claros: agendada, em andamento, concluída…</li><li>Dados do paciente e do médico na mesma tela</li><li>Valores e plano de saúde à vista</li></ul>
+                <p class="journey-step__tip">Dica amigável: menos troca de sistema, mais tempo para cuidar do paciente.</p>
+              </div>
+              <figure class="journey-step__media">
+                <button
+                  type="button"
+                  class="media-zoom"
+                  data-lightbox-src="./screenshots/consulta-detalhe.png"
+                  data-lightbox-alt="Detalhe da consulta no Sanavita"
+                  aria-label="Ampliar: Detalhe da consulta no Sanavita"
+                >
+                  <img
+                    src="./screenshots/consulta-detalhe.png"
+                    alt="Detalhe da consulta no Sanavita"
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="640"
+                  />
+                </button>
+                <figcaption>Detalhe da consulta no Sanavita</figcaption>
+              </figure>
+            </li>
+          
+            <li class="journey-step" id="passo-5" data-reveal>
+              <div class="journey-step__copy">
+                <div class="journey-step__meta">
+                  <span class="step__num">5</span>
+                  <span class="journey-step__audience">Para quem lidera a clínica</span>
+                </div>
+                <p class="journey-step__kicker">Controle sem burocracia</p>
+                <h3>Gerencie acessos e acompanhe a operação</h3>
+                <p>Acompanhe usuários, perfis e permissões. A gestão enxerga quem está ativo, quem atende e o que cada perfil pode fazer — com segurança e clareza para crescer.</p>
+                <ul class="feature__bullets"><li>Lista de usuários com status e contato</li><li>Perfis clínicos e administrativos</li><li>Pronto para expandir para novas unidades</li></ul>
+                <p class="journey-step__tip">Dica amigável: permissões certas evitam erro e protegem os dados da clínica.</p>
+              </div>
+              <figure class="journey-step__media">
+                <button
+                  type="button"
+                  class="media-zoom"
+                  data-lightbox-src="./screenshots/usuarios-lista.png"
+                  data-lightbox-alt="Lista de usuários no Sanavita"
+                  aria-label="Ampliar: Lista de usuários no Sanavita"
+                >
+                  <img
+                    src="./screenshots/usuarios-lista.png"
+                    alt="Lista de usuários no Sanavita"
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="640"
+                  />
+                </button>
+                <figcaption>Lista de usuários no Sanavita</figcaption>
+              </figure>
+            </li>
+          
+            <li class="journey-step journey-step--reverse" id="passo-6" data-reveal>
+              <div class="journey-step__copy">
+                <div class="journey-step__meta">
+                  <span class="step__num">6</span>
+                  <span class="journey-step__audience">Para gestores e donos de clínica</span>
+                </div>
+                <p class="journey-step__kicker">Dados que orientam a gestão</p>
+                <h3>Acompanhe resultados com BI integrado</h3>
+                <p>Sem planilha paralela: o Sanavita traz Business Intelligence dentro do próprio sistema. Veja ocupação, produtividade, fluxo de caixa e despesas por categoria — e exporte quando precisar apresentar o mês.</p>
+                <ul class="feature__bullets"><li>Painéis operacional e financeiro na mesma tela</li><li>Indicadores de agenda, receita e contas</li><li>Exportação de relatórios para Excel e PDF</li></ul>
+                <p class="journey-step__tip">Dica amigável: use o BI na reunião semanal — a conversa muda quando o número aparece na hora.</p>
+              </div>
+              <figure class="journey-step__media">
+                <button
+                  type="button"
+                  class="media-zoom"
+                  data-lightbox-src="./screenshots/bi-dashboard.png"
+                  data-lightbox-alt="Painel de BI do Sanavita com indicadores e gráficos"
+                  aria-label="Ampliar: Painel de BI do Sanavita com indicadores e gráficos"
+                >
+                  <img
+                    src="./screenshots/bi-dashboard.png"
+                    alt="Painel de BI do Sanavita com indicadores e gráficos"
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="640"
+                  />
+                </button>
+                <figcaption>Painel de BI do Sanavita com indicadores e gráficos</figcaption>
+              </figure>
+            </li>
+          
+        </ol>
+
+        <aside class="journey-close" data-reveal>
+          <div>
+            <h3>Pronto para ver na prática?</h3>
+            <p>Agende uma demonstração e percorra esse fluxo com a realidade da sua clínica — sem compromisso e com linguagem simples para toda a equipe.</p>
+          </div>
+          <a class="btn btn--primary btn--lg" href="#contato">
+            Quero uma demonstração guiada
+          </a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="beneficios">
+      <div class="container benefits">
+        <header class="section__header" data-reveal>
+          <p class="eyebrow">Por que Sanavita</p>
+          <h2>Resultado na operação, não só software bonito.</h2>
+        </header>
+        <div class="benefits__grid">
+          
+            <article class="benefit-card" data-reveal>
+              <h3>Menos retrabalho na recepção</h3>
+              <p>Agenda e disponibilidade do médico já filtradas — a equipe agenda com confiança.</p>
+            </article>
+          
+            <article class="benefit-card" data-reveal>
+              <h3>Operação unificada</h3>
+              <p>Pacientes, consultas, equipe, finanças e BI no mesmo ambiente, sem planilhas paralelas.</p>
+            </article>
+          
+            <article class="benefit-card" data-reveal>
+              <h3>Gestão com indicadores</h3>
+              <p>BI integrado mostra ocupação, produtividade e saúde financeira — para decidir com dados, não com feeling.</p>
+            </article>
+          
+        </div>
+        <div class="showcase">
+          <figure data-reveal>
+            <img
+              src="./screenshots/agendar-consulta.png"
+              alt="Fluxo de agendamento Sanavita"
+              loading="lazy"
+            />
+            <figcaption>Fluxo de nova consulta — do paciente ao horário livre.</figcaption>
+          </figure>
+          <figure data-reveal>
+            <img
+              src="./screenshots/bi-dashboard.png"
+              alt="BI integrado Sanavita"
+              loading="lazy"
+            />
+            <figcaption>BI integrado — indicadores e relatórios no mesmo sistema.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="planos">
+      <div class="container">
+        <header class="section__header" data-reveal>
+          <p class="eyebrow">Comercial</p>
+          <h2>Planos com módulos certos para cada momento da clínica.</h2>
+          <p>
+            Starter, Pro e Enterprise — acesso liberado por pacotes, alinhado ao
+            que a equipe vê no sistema. Valores sob proposta após entender volume
+            e suporte.
+          </p>
+        </header>
+        <div class="plans">
+          
+            <article class="plan" data-reveal>
+              
+              <h3>Starter</h3>
+              <p class="plan__price">A partir de R$ 299/mês*</p>
+              <p class="plan__note">Consultório ou clínica com 1 unidade</p>
+              <ul>
+                <li>Clínicas, usuários, pacientes e configurações</li><li>Agenda (slots de 30 min), lembretes e lista de espera</li><li>PEP: prontuário, receitas, atestados e exames</li><li>Financeiro básico (contas a pagar e receber)</li><li>Até 1 unidade e 5 usuários · trial de 14 dias</li>
+              </ul>
+              <a
+                class="btn btn--soft"
+                href="#contato"
+                data-plan-interest="starter"
+              >
+                Solicitar proposta
+              </a>
+            </article>
+          
+            <article class="plan plan--featured" data-reveal>
+              <p class="plan__badge">Recomendado</p>
+              <h3>Pro</h3>
+              <p class="plan__price">A partir de R$ 799/mês*</p>
+              <p class="plan__note">Clínica multidisciplinar em crescimento</p>
+              <ul>
+                <li>Tudo do Starter</li><li>Portal do paciente (agendar, documentos e financeiro)</li><li>Faturamento TISS (guias, lotes e glosas) + repasses</li><li>Estoque/compras, BI com Excel/PDF e módulo LGPD</li><li>Até 3 unidades e 25 usuários · implantação assistida</li>
+              </ul>
+              <a
+                class="btn btn--primary"
+                href="#contato"
+                data-plan-interest="pro"
+              >
+                Solicitar proposta
+              </a>
+            </article>
+          
+            <article class="plan" data-reveal>
+              
+              <h3>Enterprise</h3>
+              <p class="plan__price">Sob proposta</p>
+              <p class="plan__note">Redes, franquias e operação avançada</p>
+              <ul>
+                <li>Tudo do Pro, com limites sob contrato</li><li>Unidades e usuários conforme a operação da rede</li><li>Governança de acessos e suporte com SLA</li><li>Integrações e customizações sob demanda</li><li>Projeto de migração e CSM dedicado</li>
+              </ul>
+              <a
+                class="btn btn--soft"
+                href="#contato"
+                data-plan-interest="enterprise"
+              >
+                Solicitar proposta
+              </a>
+            </article>
+          
+        </div>
+        <p class="plans__disclaimer" data-reveal>*Valores indicativos por clínica. Proposta final conforme volume, unidades e suporte.</p>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="faq">
+      <div class="container faq">
+        <header class="section__header section__header--wide" data-reveal>
+          <p class="eyebrow">FAQ</p>
+          <h2>Dúvidas comuns, respostas claras — com print do sistema.</h2>
+          <p>Reunimos o que gestores, recepção e médicos mais perguntam na primeira conversa. Abra cada item para ver a explicação em linguagem simples e, quando fizer sentido, a tela real do Sanavita.</p>
+        </header>
+
+        <div class="faq-nav" data-faq-nav data-reveal aria-label="Categorias do FAQ">
+          <button type="button" class="faq-nav__item is-active" data-faq-filter="all">
+            Todas
+          </button>
+          
+            <button type="button" class="faq-nav__item" data-faq-filter="Visão geral">
+              Visão geral
+            </button>
+          
+            <button type="button" class="faq-nav__item" data-faq-filter="Agenda e consultas">
+              Agenda e consultas
+            </button>
+          
+            <button type="button" class="faq-nav__item" data-faq-filter="Equipe e acessos">
+              Equipe e acessos
+            </button>
+          
+            <button type="button" class="faq-nav__item" data-faq-filter="Multi-clínica">
+              Multi-clínica
+            </button>
+          
+            <button type="button" class="faq-nav__item" data-faq-filter="BI e financeiro">
+              BI e financeiro
+            </button>
+          
+            <button type="button" class="faq-nav__item" data-faq-filter="Planos">
+              Planos
+            </button>
+          
+            <button type="button" class="faq-nav__item" data-faq-filter="Começar">
+              Começar
+            </button>
+          
+        </div>
+
+        <div class="faq__list" data-faq>
+          
+            <details
+              class="faq__item"
+              data-reveal
+              data-faq-category="Visão geral"
+              id="faq-substitui-planilhas"
+              open
+            >
+              <summary>
+                <span class="faq__category">Visão geral</span>
+                <span class="faq__question">O Sanavita substitui planilhas e vários sistemas?</span>
+              </summary>
+              <div class="faq__body faq__body--with-media">
+                <div class="faq__copy">
+                  <p>Sim. A ideia é concentrar agenda, pacientes, equipe, consultas, financeiro e BI em um único ambiente web — sem ficar copiando informação de um lugar para o outro.</p>
+                  <ul class="feature__bullets"><li>Menos retrabalho entre recepção e gestão</li><li>Histórico do paciente no mesmo fluxo da consulta</li><li>Indicadores e relatórios sem planilha paralela</li></ul>
+                  <p class="faq__tip">Dica amigável: na demonstração mostramos o seu fluxo real (recepção → consulta → conclusão) para ficar fácil de comparar com o que você usa hoje.</p>
+                </div>
+                
+              <figure class="faq__media">
+                <button
+                  type="button"
+                  class="media-zoom"
+                  data-lightbox-src="./screenshots/consulta-detalhe.png"
+                  data-lightbox-alt="Detalhe da consulta com dados do paciente e valores"
+                  aria-label="Ampliar: Detalhe da consulta com dados do paciente e valores"
+                >
+                  <img
+                    src="./screenshots/consulta-detalhe.png"
+                    alt="Detalhe da consulta com dados do paciente e valores"
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="640"
+                  />
+                </button>
+                <figcaption>Detalhe da consulta com dados do paciente e valores</figcaption>
+              </figure>
+              </div>
+            </details>
+          
+            <details
+              class="faq__item"
+              data-reveal
+              data-faq-category="Visão geral"
+              id="faq-para-quem"
+              
+            >
+              <summary>
+                <span class="faq__category">Visão geral</span>
+                <span class="faq__question">Para quem o Sanavita faz mais sentido?</span>
+              </summary>
+              <div class="faq__body">
+                <div class="faq__copy">
+                  <p>Clínicas que querem organizar a operação sem complicar a equipe: recepção marcando com segurança, médicos com agenda clara e gestão enxergando unidades, acessos e rotina.</p>
+                  <ul class="feature__bullets"><li>Clínicas com uma ou várias unidades</li><li>Equipes mistas (recepção, clínico e administração)</li><li>Quem quer sair de planilha / WhatsApp / sistemas soltos</li></ul>
+                  <p class="faq__tip">Se a sua dor é “agenda bagunçada” ou “ninguém sabe o status da consulta”, você está no público certo.</p>
+                </div>
+                
+              </div>
+            </details>
+          
+            <details
+              class="faq__item"
+              data-reveal
+              data-faq-category="Agenda e consultas"
+              id="faq-agenda-medicos"
+              
+            >
+              <summary>
+                <span class="faq__category">Agenda e consultas</span>
+                <span class="faq__question">Como funciona a agenda dos médicos?</span>
+              </summary>
+              <div class="faq__body faq__body--with-media">
+                <div class="faq__copy">
+                  <p>Você cadastra os dias e períodos em que cada profissional atende. Na hora de marcar, o Sanavita mostra só os horários livres. Um slot ocupado não invalida o restante do dia.</p>
+                  <ul class="feature__bullets"><li>Agenda por médico e especialidade</li><li>Slots padrão de 30 minutos</li><li>Menos conflito e menos “liga só para confirmar”</li></ul>
+                  <p class="faq__tip">Dica amigável: cadastre a rotina real (ex.: seg/qua/sex 8h–17h). O sistema faz o filtro dos horários disponíveis.</p>
+                </div>
+                
+              <figure class="faq__media">
+                <button
+                  type="button"
+                  class="media-zoom"
+                  data-lightbox-src="./screenshots/agenda.png"
+                  data-lightbox-alt="Agenda diária com horários no Sanavita"
+                  aria-label="Ampliar: Agenda diária com horários no Sanavita"
+                >
+                  <img
+                    src="./screenshots/agenda.png"
+                    alt="Agenda diária com horários no Sanavita"
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="640"
+                  />
+                </button>
+                <figcaption>Agenda diária com horários no Sanavita</figcaption>
+              </figure>
+              </div>
+            </details>
+          
+            <details
+              class="faq__item"
+              data-reveal
+              data-faq-category="Agenda e consultas"
+              id="faq-agendar-consulta"
+              
+            >
+              <summary>
+                <span class="faq__category">Agenda e consultas</span>
+                <span class="faq__question">O agendamento é complicado para a recepção?</span>
+              </summary>
+              <div class="faq__body faq__body--with-media">
+                <div class="faq__copy">
+                  <p>Não. Em um fluxo só você escolhe paciente, plano (ou particular), especialidade, médico, data e horário. O valor da consulta pode vir automaticamente da especialidade.</p>
+                  <ul class="feature__bullets"><li>Só aparecem horários disponíveis</li><li>Plano de saúde ou particular na mesma tela</li><li>Valor e desconto com preenchimento simples</li></ul>
+                  <p class="faq__tip">A recepção ganha velocidade sem abrir mão do controle — e o médico vê a agenda organizada.</p>
+                </div>
+                
+              <figure class="faq__media">
+                <button
+                  type="button"
+                  class="media-zoom"
+                  data-lightbox-src="./screenshots/agendar-consulta.png"
+                  data-lightbox-alt="Tela de agendar nova consulta"
+                  aria-label="Ampliar: Tela de agendar nova consulta"
+                >
+                  <img
+                    src="./screenshots/agendar-consulta.png"
+                    alt="Tela de agendar nova consulta"
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="640"
+                  />
+                </button>
+                <figcaption>Tela de agendar nova consulta</figcaption>
+              </figure>
+              </div>
+            </details>
+          
+            <details
+              class="faq__item"
+              data-reveal
+              data-faq-category="Agenda e consultas"
+              id="faq-status-consulta"
+              
+            >
+              <summary>
+                <span class="faq__category">Agenda e consultas</span>
+                <span class="faq__question">Consigo acompanhar o status de cada consulta?</span>
+              </summary>
+              <div class="faq__body faq__body--with-media">
+                <div class="faq__copy">
+                  <p>Sim. Do agendamento ao atendimento, a equipe vê status claros (agendada, em andamento, concluída…) junto com paciente, médico e detalhes financeiros.</p>
+                  <ul class="feature__bullets"><li>Check-in e andamento no mesmo painel</li><li>Dados do paciente à mão no atendimento</li><li>Valores e plano visíveis para a gestão</li></ul>
+                  <p class="faq__tip">Menos “em qual sistema está?” — tudo no mesmo lugar.</p>
+                </div>
+                
+              <figure class="faq__media">
+                <button
+                  type="button"
+                  class="media-zoom"
+                  data-lightbox-src="./screenshots/consulta-detalhe.png"
+                  data-lightbox-alt="Painel de detalhe da consulta"
+                  aria-label="Ampliar: Painel de detalhe da consulta"
+                >
+                  <img
+                    src="./screenshots/consulta-detalhe.png"
+                    alt="Painel de detalhe da consulta"
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="640"
+                  />
+                </button>
+                <figcaption>Painel de detalhe da consulta</figcaption>
+              </figure>
+              </div>
+            </details>
+          
+            <details
+              class="faq__item"
+              data-reveal
+              data-faq-category="Equipe e acessos"
+              id="faq-perfis-acesso"
+              
+            >
+              <summary>
+                <span class="faq__category">Equipe e acessos</span>
+                <span class="faq__question">Dá para controlar o que cada pessoa acessa?</span>
+              </summary>
+              <div class="faq__body faq__body--with-media">
+                <div class="faq__copy">
+                  <p>Sim. Existem perfis para recepção, gestão, corpo clínico e proprietário, com vínculo por clínica. Cada pessoa entra com o que precisa — sem expor o que não precisa.</p>
+                  <ul class="feature__bullets"><li>Perfis alinhados à rotina da clínica</li><li>Vínculo de usuário por unidade</li><li>Menos risco de erro por acesso indevido</li></ul>
+                  <p class="faq__tip">Dica amigável: comece com poucos perfis bem definidos; depois refine conforme a equipe cresce.</p>
+                </div>
+                
+              <figure class="faq__media">
+                <button
+                  type="button"
+                  class="media-zoom"
+                  data-lightbox-src="./screenshots/perfis-acesso.png"
+                  data-lightbox-alt="Tela de perfis e acessos no Sanavita"
+                  aria-label="Ampliar: Tela de perfis e acessos no Sanavita"
+                >
+                  <img
+                    src="./screenshots/perfis-acesso.png"
+                    alt="Tela de perfis e acessos no Sanavita"
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="640"
+                  />
+                </button>
+                <figcaption>Tela de perfis e acessos no Sanavita</figcaption>
+              </figure>
+              </div>
+            </details>
+          
+            <details
+              class="faq__item"
+              data-reveal
+              data-faq-category="Equipe e acessos"
+              id="faq-usuarios"
+              
+            >
+              <summary>
+                <span class="faq__category">Equipe e acessos</span>
+                <span class="faq__question">Como a gestão acompanha a equipe no sistema?</span>
+              </summary>
+              <div class="faq__body faq__body--with-media">
+                <div class="faq__copy">
+                  <p>Há visão de usuários com status, contato e perfil. Fica claro quem está ativo, quem atende e o que cada um pode fazer — útil na implantação e no dia a dia.</p>
+                  <ul class="feature__bullets"><li>Lista de usuários com filtros rápidos</li><li>Status ativo / inativo</li><li>Base pronta para expandir a equipe</li></ul>
+                  
+                </div>
+                
+              <figure class="faq__media">
+                <button
+                  type="button"
+                  class="media-zoom"
+                  data-lightbox-src="./screenshots/usuarios-lista.png"
+                  data-lightbox-alt="Lista de usuários da clínica"
+                  aria-label="Ampliar: Lista de usuários da clínica"
+                >
+                  <img
+                    src="./screenshots/usuarios-lista.png"
+                    alt="Lista de usuários da clínica"
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="640"
+                  />
+                </button>
+                <figcaption>Lista de usuários da clínica</figcaption>
+              </figure>
+              </div>
+            </details>
+          
+            <details
+              class="faq__item"
+              data-reveal
+              data-faq-category="Multi-clínica"
+              id="faq-multi-clinica"
+              
+            >
+              <summary>
+                <span class="faq__category">Multi-clínica</span>
+                <span class="faq__question">Funciona para mais de uma unidade?</span>
+              </summary>
+              <div class="faq__body faq__body--with-media">
+                <div class="faq__copy">
+                  <p>Sim. O Sanavita é multi-clínica: a equipe troca o contexto da unidade no topo e mantém cadastros, agendas, especialidades e permissões organizados por clínica.</p>
+                  <ul class="feature__bullets"><li>Troca rápida de unidade</li><li>Especialidades e operação por clínica</li><li>Governança de acessos para redes</li></ul>
+                  <p class="faq__tip">Ideal para quem tem mais de um endereço ou está planejando crescer sem trocar de sistema.</p>
+                </div>
+                
+              <figure class="faq__media">
+                <button
+                  type="button"
+                  class="media-zoom"
+                  data-lightbox-src="./screenshots/clinicas.png"
+                  data-lightbox-alt="Lista de clínicas no Sanavita"
+                  aria-label="Ampliar: Lista de clínicas no Sanavita"
+                >
+                  <img
+                    src="./screenshots/clinicas.png"
+                    alt="Lista de clínicas no Sanavita"
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="640"
+                  />
+                </button>
+                <figcaption>Lista de clínicas no Sanavita</figcaption>
+              </figure>
+              </div>
+            </details>
+          
+            <details
+              class="faq__item"
+              data-reveal
+              data-faq-category="BI e financeiro"
+              id="faq-bi-integrado"
+              
+            >
+              <summary>
+                <span class="faq__category">BI e financeiro</span>
+                <span class="faq__question">O Sanavita tem BI / relatórios de gestão?</span>
+              </summary>
+              <div class="faq__body faq__body--with-media">
+                <div class="faq__copy">
+                  <p>Sim — e já vem integrado ao sistema. Você acompanha indicadores operacionais e financeiros (receita, despesas, fluxo de caixa, categorias, ocupação) sem contratar outra ferramenta de analytics.</p>
+                  <ul class="feature__bullets"><li>Painéis com KPIs e gráficos no próprio Sanavita</li><li>Visão financeira alinhada a contas a pagar/receber</li><li>Exportação de relatórios para Excel e PDF</li></ul>
+                  <p class="faq__tip">Dica amigável: na demonstração abrimos o BI com o período da sua clínica — fica fácil ver o valor na prática.</p>
+                </div>
+                
+              <figure class="faq__media">
+                <button
+                  type="button"
+                  class="media-zoom"
+                  data-lightbox-src="./screenshots/bi-dashboard.png"
+                  data-lightbox-alt="Tela de Business Intelligence do Sanavita"
+                  aria-label="Ampliar: Tela de Business Intelligence do Sanavita"
+                >
+                  <img
+                    src="./screenshots/bi-dashboard.png"
+                    alt="Tela de Business Intelligence do Sanavita"
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="640"
+                  />
+                </button>
+                <figcaption>Tela de Business Intelligence do Sanavita</figcaption>
+              </figure>
+              </div>
+            </details>
+          
+            <details
+              class="faq__item"
+              data-reveal
+              data-faq-category="Planos"
+              id="faq-planos-diferenca"
+              
+            >
+              <summary>
+                <span class="faq__category">Planos</span>
+                <span class="faq__question">Qual a diferença entre Starter, Pro e Enterprise?</span>
+              </summary>
+              <div class="faq__body">
+                <div class="faq__copy">
+                  <p>Starter cobre a operação essencial em 1 unidade: agenda, pacientes, PEP (prontuário, receitas, exames) e financeiro básico. Pro inclui portal do paciente, faturamento TISS, estoque, BI com exportação e LGPD — até 3 unidades. Enterprise mantém o Pro com limites, suporte e integrações sob contrato.</p>
+                  <ul class="feature__bullets"><li>Starter — consultório / clínica enxuta</li><li>Pro — clínica em crescimento (recomendado)</li><li>Enterprise — redes e franquias sob proposta</li></ul>
+                  <p class="faq__tip">Não sabe qual escolher? Peça uma proposta com número de unidades e usuários — sugerimos o plano certo.</p>
+                </div>
+                
+              </div>
+            </details>
+          
+            <details
+              class="faq__item"
+              data-reveal
+              data-faq-category="Planos"
+              id="faq-trial"
+              
+            >
+              <summary>
+                <span class="faq__category">Planos</span>
+                <span class="faq__question">Tem período de teste?</span>
+              </summary>
+              <div class="faq__body">
+                <div class="faq__copy">
+                  <p>Sim. Novos cadastros de proprietário começam com trial do Starter (14 dias) para a equipe validar o fluxo. Depois você ativa o plano contratado ou faz upgrade para Pro/Enterprise.</p>
+                  <ul class="feature__bullets"><li>14 dias para conhecer a operação</li><li>Upgrade sem perder cadastros</li><li>Demonstração comercial sem compromisso</li></ul>
+                  
+                </div>
+                
+              </div>
+            </details>
+          
+            <details
+              class="faq__item"
+              data-reveal
+              data-faq-category="Planos"
+              id="faq-upgrade-modulos"
+              
+            >
+              <summary>
+                <span class="faq__category">Planos</span>
+                <span class="faq__question">Consigo liberar só alguns módulos depois?</span>
+              </summary>
+              <div class="faq__body">
+                <div class="faq__copy">
+                  <p>Sim. O acesso segue o plano do grupo (Starter, Pro ou Enterprise): o que está no plano aparece no menu para quem tiver permissão de perfil. Ao crescer, fazemos upgrade de plano — sem trocar de sistema.</p>
+                  <ul class="feature__bullets"><li>Menus liberados conforme o plano contratado</li><li>Limites de unidades e usuários por plano</li><li>Perfis da equipe continuam controlando quem vê o quê</li></ul>
+                  
+                </div>
+                
+              </div>
+            </details>
+          
+            <details
+              class="faq__item"
+              data-reveal
+              data-faq-category="BI e financeiro"
+              id="faq-tiss"
+              
+            >
+              <summary>
+                <span class="faq__category">BI e financeiro</span>
+                <span class="faq__question">O Sanavita faz faturamento TISS?</span>
+              </summary>
+              <div class="faq__body">
+                <div class="faq__copy">
+                  <p>Sim, no plano Pro (e Enterprise). A clínica monta guias e lotes, registra glosas e exporta XML TISS 3.05; também pode importar retorno quando o módulo estiver habilitado. Não substitui a relação contratual com cada convênio — organiza o fluxo de faturamento.</p>
+                  <ul class="feature__bullets"><li>Guias, lotes e glosas no sistema</li><li>Exportação de lote em XML TISS</li><li>Financeiro do dia a dia já no Starter</li></ul>
+                  
+                </div>
+                
+              </div>
+            </details>
+          
+            <details
+              class="faq__item"
+              data-reveal
+              data-faq-category="Visão geral"
+              id="faq-portal-paciente"
+              
+            >
+              <summary>
+                <span class="faq__category">Visão geral</span>
+                <span class="faq__question">Existe portal para o paciente?</span>
+              </summary>
+              <div class="faq__body">
+                <div class="faq__copy">
+                  <p>Sim, no plano Pro. O paciente acessa uma área própria para agendar, ver consultas e documentos (receitas, atestados, exames) e acompanhar o financeiro. A clínica aprova solicitações de acesso.</p>
+                  <ul class="feature__bullets"><li>Portal separado do login da equipe</li><li>Agendamento e documentos pelo paciente</li><li>Controle de acesso pela clínica</li></ul>
+                  
+                </div>
+                
+              </div>
+            </details>
+          
+            <details
+              class="faq__item"
+              data-reveal
+              data-faq-category="Começar"
+              id="faq-implantacao"
+              
+            >
+              <summary>
+                <span class="faq__category">Começar</span>
+                <span class="faq__question">A implantação é demorada ou “pesada”?</span>
+              </summary>
+              <div class="faq__body">
+                <div class="faq__copy">
+                  <p>Não precisa ser. O caminho mais leve é começar por uma unidade, cadastrar especialidades e agendas, e treinar a recepção no fluxo de marcar consulta. Em poucos dias a rotina já anda.</p>
+                  <ul class="feature__bullets"><li>Comece pequeno e evolua com segurança</li><li>Telas pensadas para o dia a dia (não só para TI)</li><li>Demonstração guiada com o seu cenário</li></ul>
+                  <p class="faq__tip">Dica amigável: na demo, traga 1 médico e 1 turno reais — fica muito mais concreto.</p>
+                </div>
+                
+              </div>
+            </details>
+          
+            <details
+              class="faq__item"
+              data-reveal
+              data-faq-category="Começar"
+              id="faq-demonstracao"
+              
+            >
+              <summary>
+                <span class="faq__category">Começar</span>
+                <span class="faq__question">Posso pedir uma demonstração sem compromisso?</span>
+              </summary>
+              <div class="faq__body">
+                <div class="faq__copy">
+                  <p>Pode — e deve. Preencha o formulário de contato com os dados da clínica e o plano de interesse. O time comercial retorna para agendar uma apresentação guiada, no seu ritmo.</p>
+                  <ul class="feature__bullets"><li>Sem compromisso comercial na primeira conversa</li><li>Foco na operação da sua clínica</li><li>Respostas objetivas para gestores e equipe</li></ul>
+                  <p class="faq__tip">Use o formulário em Contato ou o botão abaixo — respondemos com horário sugerido.</p>
+                </div>
+                
+              </div>
+            </details>
+          
+        </div>
+
+        <aside class="faq-close" data-reveal>
+          <div>
+            <h3>Ainda ficou alguma dúvida?</h3>
+            <p>Conte o tamanho da clínica e o que mais dói hoje (agenda, acessos, multi-unidade…). Montamos a demonstração em cima disso.</p>
+          </div>
+          <a class="btn btn--primary btn--lg" href="#contato">
+            Falar com o time Sanavita
+          </a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="cta" id="contato">
+      <div class="container cta__panel">
+        <div data-reveal>
+          <p class="eyebrow eyebrow--light">Próximo passo</p>
+          <h2>Leve o Sanavita para a sua clínica.</h2>
+          <p>
+            Agende uma demonstração e veja como o sistema se encaixa na sua
+            operação — recepção, médicos e gestão.
+          </p>
+          <ul class="cta__contacts">
+            <li><a href="mailto:comercial@sanavita.com.br">comercial@sanavita.com.br</a></li>
+            <li><a href="tel:+551140000000">(11) 4000-0000</a></li>
+          </ul>
+        </div>
+        <form class="cta__form" data-contact-form novalidate>
+          <div class="form-grid">
+            <label>
+              Nome *
+              <input name="name" type="text" required placeholder="Seu nome" autocomplete="name" />
+              <span class="field-error" data-error-for="name"></span>
+            </label>
+            <label>
+              E-mail profissional *
+              <input name="email" type="email" required placeholder="voce@clinica.com.br" autocomplete="email" />
+              <span class="field-error" data-error-for="email"></span>
+            </label>
+            <label>
+              Clínica / cidade *
+              <input name="clinic" type="text" required placeholder="Nome da clínica e cidade" />
+              <span class="field-error" data-error-for="clinic"></span>
+            </label>
+            <label>
+              WhatsApp / telefone
+              <input name="phone" type="tel" placeholder="(11) 99999-9999" autocomplete="tel" />
+              <span class="field-error" data-error-for="phone"></span>
+            </label>
+            <label>
+              Plano de interesse
+              <select name="planInterest" data-plan-select>
+                <option value="">Ainda não sei</option>
+                <option value="starter">Starter</option>
+                <option value="pro">Pro</option>
+                <option value="enterprise">Enterprise</option>
+              </select>
+            </label>
+            <label>
+              Tamanho da equipe
+              <select name="teamSize">
+                <option value="">Selecione</option>
+                <option value="1-5">1 a 5 pessoas</option>
+                <option value="6-20">6 a 20 pessoas</option>
+                <option value="21-50">21 a 50 pessoas</option>
+                <option value="50+">Mais de 50</option>
+              </select>
+            </label>
+            <label class="form-grid__full">
+              Mensagem
+              <textarea name="message" rows="3" placeholder="Conte um pouco sobre sua operação (opcional)" maxlength="800"></textarea>
+              <span class="field-error" data-error-for="message"></span>
+            </label>
+          </div>
+          <button class="btn btn--primary btn--lg" type="submit" data-submit>
+            Solicitar demonstração
+          </button>
+          <p class="form-note" data-form-note role="status" aria-live="polite" hidden></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <div class="brand brand--footer">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__name">Sanavita</span>
+        </div>
+        <p>Gestão inteligente para clínicas</p>
+      </div>
+      <div>
+        <p class="footer__title">Navegação</p>
+        <a href="#produto">Produto</a>
+        <a href="#planos">Planos</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contato">Contato</a>
+      </div>
+      <div>
+        <p class="footer__title">Contato</p>
+        <a href="mailto:comercial@sanavita.com.br">comercial@sanavita.com.br</a>
+        <a href="tel:+551140000000">(11) 4000-0000</a>
+      </div>
+    </div>
+    <div class="container footer__copy">
+      <p>© 2026 Sanavita. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <div class="lightbox" data-lightbox hidden>
+    <button type="button" class="lightbox__close" data-lightbox-close aria-label="Fechar imagem">×</button>
+    <img data-lightbox-image alt="" />
+  </div>
+  
+    <script src="./app.js" defer></script>
+  </body>
+</html>
