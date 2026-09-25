@@ -115,3 +115,4 @@ stages:
                 else
                   echo "CLOUDFRONT_PANEL_DISTRIBUTION_ID vazio — deploy só S3 (website)."
                 fi
+                
