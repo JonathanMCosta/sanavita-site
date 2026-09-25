@@ -14,11 +14,12 @@ import {
   stats,
   steps,
 } from '../content'
+import { legalPages } from '../legal/documents'
 import { escapeHtml } from '../lib/dom'
 import { renderPlansLoading } from '../lib/plans'
 
 /** Respeita o base do Vite. */
-function asset(path: string) {
+export function asset(path: string) {
   const base = import.meta.env.BASE_URL
   return `${base}${path.replace(/^\//, '')}`
 }
@@ -60,9 +61,47 @@ function renderFeature(
   `
 }
 
-export function renderPage() {
+/** Rodapé comum; nas páginas legais os links da home ganham o prefixo `homeHref`. */
+export function renderFooter(homeHref = '') {
   const year = new Date().getFullYear()
+  const legalLinks = legalPages
+    .map((page) => `<a href="${asset(`${page.slug}.html`)}">${escapeHtml(page.label)}</a>`)
+    .join('')
 
+  return `
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <div class="brand brand--footer">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__name">${site.name}</span>
+        </div>
+        <p>${escapeHtml(site.tagline)}</p>
+      </div>
+      <div>
+        <p class="footer__title">Navegação</p>
+        <a href="${homeHref}#produto">Produto</a>
+        <a href="${homeHref}#planos">Planos</a>
+        <a href="${homeHref}#faq">FAQ</a>
+        <a href="${homeHref}#contato">Contato</a>
+      </div>
+      <div>
+        <p class="footer__title">Legal</p>
+        ${legalLinks}
+      </div>
+      <div>
+        <p class="footer__title">Contato</p>
+        <a href="mailto:${site.email}">${site.email}</a>
+        <a href="tel:+551140000000">${site.phone}</a>
+      </div>
+    </div>
+    <div class="container footer__copy">
+      <p>© ${year} ${site.name}. Todos os direitos reservados.</p>
+    </div>
+  </footer>`
+}
+
+export function renderPage() {
   return `
   <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
 
@@ -527,32 +566,7 @@ export function renderPage() {
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container footer__grid">
-      <div>
-        <div class="brand brand--footer">
-          <span class="brand__mark" aria-hidden="true"></span>
-          <span class="brand__name">${site.name}</span>
-        </div>
-        <p>${escapeHtml(site.tagline)}</p>
-      </div>
-      <div>
-        <p class="footer__title">Navegação</p>
-        <a href="#produto">Produto</a>
-        <a href="#planos">Planos</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contato">Contato</a>
-      </div>
-      <div>
-        <p class="footer__title">Contato</p>
-        <a href="mailto:${site.email}">${site.email}</a>
-        <a href="tel:+551140000000">${site.phone}</a>
-      </div>
-    </div>
-    <div class="container footer__copy">
-      <p>© ${year} ${site.name}. Todos os direitos reservados.</p>
-    </div>
-  </footer>
+  ${renderFooter()}
 
   <div class="lightbox" data-lightbox hidden>
     <button type="button" class="lightbox__close" data-lightbox-close aria-label="Fechar imagem">×</button>

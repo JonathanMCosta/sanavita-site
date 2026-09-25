@@ -1,11 +1,16 @@
 # Site institucional (sanavita_site) — Vite → S3 (+ CloudFront se existir)
-# Variable Group: sanavita-aws-site-dev | Service connection: aws-sanavita
+# Qualidade (eslint, npm audit) -> build/deploy dev -> (main) build/deploy prod com aprovação
+# Variable groups: sanavita-dev e sanavita-prod | Service connections: aws-sanavita e aws-sanavita-prod
+# Environment: sanavita-prod (aprovadores em Pipelines > Environments > Approvals and checks)
 #
 # Variáveis (valores em sanavita_iac: terraform output azure_devops_variable_groups_hint):
 #   AWS_REGION, S3_PANEL_BUCKET
 #   VITE_PANEL_API_URL (URL da API do painel + /api/v1, sem barra final)
 #     Os planos exibidos no site vêm de GET $(VITE_PANEL_API_URL)/public/plans.
 #   CLOUDFRONT_PANEL_DISTRIBUTION_ID (opcional — vazio se CloudFront ainda não estiver liberado)
+#
+# Variáveis opcionais (pipeline > Variables):
+#   AUDIT_IGNORE=true   npm audit (severidade alta ou crítica) só avisa, não reprova
 
 trigger:
   batch: true
@@ -24,6 +29,8 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
+  - name: AUDIT_IGNORE
+    value: 'false'
   - group: sanavita-dev
   - name: nodeVersion
     value: '22.x'
@@ -31,8 +38,64 @@ variables:
     value: $(Pipeline.Workspace)/.npm
 
 stages:
+  # Barreira de qualidade: roda em PR e em push. O build depende dela.
+  - stage: Quality
+    displayName: Lint and audit
+    jobs:
+      - job: Lint
+        displayName: eslint + tsc + npm audit
+        steps:
+          - checkout: self
+
+          - task: NodeTool@0
+            displayName: Use Node $(nodeVersion)
+            inputs:
+              versionSpec: $(nodeVersion)
+
+          - task: Cache@2
+            displayName: Cache npm
+            inputs:
+              key: 'npm | "$(Agent.OS)" | "$(nodeVersion)" | package-lock.json'
+              restoreKeys: |
+                npm | "$(Agent.OS)" | "$(nodeVersion)"
+                npm | "$(Agent.OS)"
+              path: $(npm_config_cache)
+
+          - script: |
+              set -euo pipefail
+              npm ci --prefer-offline --no-audit --no-fund
+            displayName: Install dependencies
+
+          - script: |
+              set -uo pipefail
+              if npm audit --audit-level=high; then
+                exit 0
+              fi
+              if [ "${AUDIT_IGNORE:-false}" = "true" ]; then
+                echo "##vso[task.logissue type=warning]npm audit: vulnerabilidade alta ou crítica (AUDIT_IGNORE=true: não bloqueia)"
+                echo "##vso[task.complete result=SucceededWithIssues;]"
+                exit 0
+              fi
+              echo "##vso[task.logissue type=error]npm audit: vulnerabilidade alta ou crítica. Rode npm audit fix ou use AUDIT_IGNORE=true."
+              exit 1
+            displayName: npm audit (high)
+            env:
+              AUDIT_IGNORE: $(AUDIT_IGNORE)
+
+          - script: |
+              set -euo pipefail
+              npm run lint
+            displayName: eslint
+
+          - script: |
+              set -euo pipefail
+              npx tsc --noEmit
+            displayName: tsc
+
   - stage: Build
     displayName: Build site
+    dependsOn: Quality
+    condition: succeeded()
     jobs:
       - job: ViteBuild
         displayName: npm ci + build (tsc + vite)
@@ -68,7 +131,7 @@ stages:
             artifact: site-dist
             displayName: Publish dist artifact
 
-  # Deploy sem Environment (sem aprovação). Em prod, use job deployment + environment.
+  # Dev: sem aprovação.
   - stage: Deploy
     displayName: Deploy S3
     dependsOn: Build
@@ -115,4 +178,99 @@ stages:
                 else
                   echo "CLOUDFRONT_PANEL_DISTRIBUTION_ID vazio — deploy só S3 (website)."
                 fi
-                
+
+  # Prod: build com VITE_PANEL_API_URL de prod (fica no bundle).
+  - stage: BuildProd
+    displayName: Build site prod
+    dependsOn:
+      - Quality
+      - Deploy
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'), ne(variables['Build.Reason'], 'PullRequest'))
+    variables:
+      - group: sanavita-prod
+    jobs:
+      - job: ViteBuildProd
+        displayName: npm ci + build (prod)
+        steps:
+          - checkout: self
+
+          - task: NodeTool@0
+            displayName: Use Node $(nodeVersion)
+            inputs:
+              versionSpec: $(nodeVersion)
+
+          - task: Cache@2
+            displayName: Cache npm
+            inputs:
+              key: 'npm | "$(Agent.OS)" | "$(nodeVersion)" | package-lock.json'
+              restoreKeys: |
+                npm | "$(Agent.OS)" | "$(nodeVersion)"
+                npm | "$(Agent.OS)"
+              path: $(npm_config_cache)
+
+          - script: |
+              set -euo pipefail
+              case "${VITE_PANEL_API_URL:-}" in
+                ""|'$('*) echo "##vso[task.logissue type=error]VITE_PANEL_API_URL não definida no group sanavita-prod"; exit 1 ;;
+              esac
+              npm ci --prefer-offline --no-audit --no-fund
+              npm run build
+            displayName: Install and build
+            env:
+              VITE_PANEL_API_URL: $(VITE_PANEL_API_URL)
+
+          - publish: dist
+            artifact: site-dist-prod
+            displayName: Publish dist artifact
+
+  # Prod: aprovação no environment sanavita-prod.
+  - stage: DeployProd
+    displayName: Deploy S3 prod
+    dependsOn: BuildProd
+    condition: succeeded()
+    variables:
+      - group: sanavita-prod
+    jobs:
+      - deployment: DeploySiteProd
+        displayName: Sync S3 (and CloudFront) prod
+        environment: sanavita-prod
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                  artifact: site-dist-prod
+
+                - task: AWSShellScript@1
+                  displayName: aws s3 sync + invalidation
+                  inputs:
+                    awsCredentials: aws-sanavita-prod
+                    regionName: $(AWS_REGION)
+                    scriptType: inline
+                    inlineScript: |
+                      set -euo pipefail
+                      DIST="$(Pipeline.Workspace)/site-dist-prod"
+
+                      aws s3 sync "$DIST/assets" "s3://$(S3_PANEL_BUCKET)/assets/" \
+                        --delete \
+                        --cache-control "public,max-age=31536000,immutable"
+
+                      aws s3 sync "$DIST" "s3://$(S3_PANEL_BUCKET)/" \
+                        --delete \
+                        --exclude "assets/*" \
+                        --exclude "*.html" \
+                        --exclude "plans.json" \
+                        --cache-control "public,max-age=3600"
+
+                      aws s3 sync "$DIST" "s3://$(S3_PANEL_BUCKET)/" \
+                        --exclude "*" \
+                        --include "*.html" \
+                        --cache-control "public,max-age=0,must-revalidate"
+
+                      if [ -n "${CLOUDFRONT_PANEL_DISTRIBUTION_ID:-}" ] && [ "${CLOUDFRONT_PANEL_DISTRIBUTION_ID}" != "null" ]; then
+                        aws cloudfront create-invalidation \
+                          --distribution-id "$(CLOUDFRONT_PANEL_DISTRIBUTION_ID)" \
+                          --paths "/*"
+                      else
+                        echo "CLOUDFRONT_PANEL_DISTRIBUTION_ID vazio — deploy só S3 (website)."
+                      fi

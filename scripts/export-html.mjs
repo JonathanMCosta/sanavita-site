@@ -33,7 +33,7 @@ await build({
     js: `import { meta as import_meta_env } from '${pathToFileURL(join(tmpDir, 'vite-env-shim.js')).href}';\nconst import_meta = { env: import_meta_env.env };`,
   },
   define: {
-    'import.meta.env.BASE_URL': '"./\"',
+    'import.meta.env.BASE_URL': '"./"',
   },
 })
 

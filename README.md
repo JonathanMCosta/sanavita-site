@@ -30,6 +30,21 @@ Se a API do painel não responder (ex.: ambiente desligado à noite), o site usa
 
 Só sem nenhuma dessas fontes aparece o aviso com opção de tentar de novo.
 
+## Documentos legais
+
+`termos-de-uso.html`, `politica-de-privacidade.html`, `acordo-de-tratamento-de-dados.html`
+e `suboperadores.html` (links no rodapé) exibem o conteúdo de `src/legal/documents.json`.
+
+A fonte única dos textos, com versão e data de vigência, fica na API
+(`sanavita_api/src/services/legal/content`); o app lê de lá em tempo real
+(`GET /api/v1/legal/documents`). O JSON do site é uma cópia gerada — não edite à mão.
+Quando uma versão mudar, regenere e faça o deploy do site:
+
+```bash
+cd ../sanavita_api
+.venv\Scripts\python.exe scripts\export_legal_documents.py ..\sanavita_site\src\legal\documents.json
+```
+
 ## Build
 
 ```bash
